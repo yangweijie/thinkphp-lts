@@ -1,5 +1,5 @@
 # thinkphp-lts
-一个TP5的类库速查表
+一个TP5的类库[速查表](https://yangweijie.github.io/thinkphp-lts/)
 
 ## 生成
 本分支是速查表的生成源码，可以通过修改Index控制器里的get_core_class 方法和info数组 修改为适合任何tp5 里 命名空间能找到的库 的速查表  比如 think-queue 之类的。
@@ -9,5 +9,4 @@
 这样只要大家在此项目里composer 更新或者切换tp5版本 就可以看不同版本的核心类库速查表了。
 
 ## issue
-
 欢迎大家提建议
