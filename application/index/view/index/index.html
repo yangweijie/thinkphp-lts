@@ -1,0 +1,83 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="/public/static/favicon.png">
+	<meta name="description" content="{$info.description}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="@{$info.author}">
+	<title>{$info.name}</title>
+	<link rel="stylesheet" href="/public/static/css/normalize.css" />
+	<link rel="stylesheet" href="/public/static/css/foundation.min.css" />
+	<link rel="stylesheet" href="/public/static/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/public/static/css/page.css" />
+</head>
+
+<body>
+	<div class="off-canvas-wrapper wrapper-container">
+		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+			<div class="off-canvas position-left sidebar-canvas" id="offCanvasLeft" data-off-canvas data-position="left">
+				<button class="close-button" aria-label="Close menu" type="button" data-close>
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<ul class="mobile-ofc vertical menu">
+					<li>
+						<button class="warning hollow button check-all-button">查看全部</button>
+					</li>
+					<li>
+						<ul class="submenu menu vertical mobile-cmd-cell" data-submenu></ul>
+					</li>
+				</ul>
+			</div>
+			<div class="off-canvas-content" data-off-canvas-content>
+				<div class="title-bar hide-for-medium">
+					<div class="title-bar-left">
+						<button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+					</div>
+				</div>
+			</div>
+			<a href="#top" id="top-button" title="Top"><i class="icon-arrow-up"></i></a>
+			<a href="#" class="comments-toggle" title="隐藏/展示代码注释"><i class="icon-eye-close"></i></a>
+			<div class="row full-width">
+				<div class="large-2 columns code-column sidebar">
+					<h5 class="sidebar-title">{$info.name}</h5>
+					<hr class="horizonal-line">
+					<div class="show-for-medium">
+						<button class="warning hollow button check-all-button">查看全部</button>
+						<div class="clearfix"></div>
+						<ul class="sidebar-menu">
+						</ul>
+						<div class="clearfix"></div>
+						<hr class="horizonal-line">
+					</div>
+					{notempty name="info.info"}
+					<p>本速查表里的类都是think为命名空间的，实例化时省去了 &nbsp;use。用的时候注意。</p><p>本速查表里会有四种方法的调用：</p><p>&nbsp; &nbsp; 公有方法 $class = new Class(); &nbsp;$class-&gt;foo();<br></p><p>&nbsp; &nbsp; 公有静态 Class::foo();<br></p><p>&nbsp; &nbsp; 私有方法 $this-&gt;foo();<br></p><p>&nbsp; &nbsp; 私有静态 self::foo();<br></p><p>关于注释，为了简洁，/** 的单行注释被我改为了 //&nbsp;</p><p><br></p>
+					<hr class="horizonal-line">
+					{/notempty}
+				</div>
+				<div class="large-10 columns code-column code-container">
+					<div class="grid">
+						{volist name="chapters" id="chapter"}
+						<section class="cmd-description grid-item">
+							<h4><a name="{$chapter.name|strtolower}" href="#{$chapter.name|strtolower}">{$chapter.name}</a>
+							<a href="{$chapter.link?:'#'}" title="{$chapter.name} @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">{$chapter.content}</pre>
+						</section>
+						{/volist}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="/public/static/js/jquery.js"></script>
+	<script src="/public/static/js/jquery.highlight-4.js"></script>
+	<script src="/public/static/js/prettify.js"></script>
+	<script src="/public/static/js/foundation.min.js"></script>
+	<script src="/public/static/js/masonry.js"></script>
+	<script src="/public/static/js/app.js"></script>
+</body>
+
+</html>
