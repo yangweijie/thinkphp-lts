@@ -13,6 +13,8 @@ namespace  app\index\controller;
 
 use think\Controller;
 use think\App;
+use think\facade\Env;
+
 class Index extends Controller
 {
 	public function index(){
@@ -24,7 +26,7 @@ class Index extends Controller
 		];
 		$classNames = $this->get_core_class();
 
-		\think\Loader::import('ClassMethodExtractor', EXTEND_PATH);
+		require_once Env::get('extend_path').'/ClassMethodExtractor.php';
 
 		$cme = new \ClassMethodExtractor();
 
@@ -43,7 +45,7 @@ class Index extends Controller
 	}
 
 	public function get_core_class(){
-		$class_path = CORE_PATH;
+		$class_path = Env::get('think_path').'/library/think/';
 		$before_cwd = getcwd();
 		chdir($class_path);
 		$names = glob('*.php');
