@@ -1,26 +1,23 @@
 <?php
 // +----------------------------------------------------------------------
-// | 海豚PHP框架 [ DolphinPHP ]
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | 版权所有 2016~2017 河源市卓锐科技有限公司 [ http://www.zrthink.com ]
+// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
-// | 官方网站：http://dolphinphp.com
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
+// | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-// | 作者: 蔡伟明 <314013107@qq.com>
-// +----------------------------------------------------------------------
-//页面重定向
 
-// [ PHP版本检查 ]
-header("Content-type: text/html; charset=utf-8");
-if (version_compare(PHP_VERSION, '5.5', '<')) {
-    die('PHP版本过低，最少需要PHP5.5，请升级PHP版本！');
-}
 // [ 应用入口文件 ]
+namespace think;
+
 
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/application/');
+// 加载框架基础引导文件
+require __DIR__ . '/thinkphp/base.php';
+// 添加额外的代码
 
-// 加载框架引导文件
-require './thinkphp/start.php';
+// 执行应用并响应
+Container::get('app', [APP_PATH])->run()->send();

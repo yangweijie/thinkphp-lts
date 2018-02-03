@@ -9,11 +9,9 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-use think\facade\Env;
-
 return [
     // 数据库类型
-    'type'            => 'sqlite',
+    'type'            => 'mysql',
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
@@ -25,13 +23,13 @@ return [
     // 端口
     'hostport'        => '',
     // 连接dsn
-    'dsn'             => 'sqlite:'.Env::get('app_path').'../../st.sqlite3',
+    'dsn'             => '',
     // 数据库连接参数
     'params'          => [],
     // 数据库编码默认采用utf8
     'charset'         => 'utf8',
     // 数据库表前缀
-    'prefix'          => 'st_',
+    'prefix'          => '',
     // 数据库调试模式
     'debug'           => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
