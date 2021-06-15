@@ -1,14 +1,56 @@
-# thinkphp-lts
-一个TP5的类库[速查表](https://yangweijie.github.io/thinkphp-lts/)
+ThinkPHP 6.0
+===============
 
-## 生成
-本分支是速查表的生成源码，可以通过修改Index控制器里的get_core_class 方法和info数组 修改为适合任何tp5 里 命名空间能找到的库 的速查表  比如 think-queue 之类的。
+> 运行环境要求PHP7.1+，兼容PHP8.0。
 
-为了方便整体了解源码制作了此工具额静态版，后来tp框架升级频繁，就产生了 动态生成的想法。
+[官方应用服务市场](https://market.topthink.com) | [`ThinkAPI`——官方统一API服务](https://docs.topthink.com/think-api)
 
-这样只要大家在此项目里composer 更新或者切换tp5版本 就可以看不同版本的核心类库速查表了。
+ThinkPHPV6.0版本由[亿速云](https://www.yisu.com/)独家赞助发布。
 
-由于版本差异大，tp5.1 版请切换 到tp5.1分支查看
+## 主要新特性
 
-## issue
-欢迎大家提建议
+* 采用`PHP7`强类型（严格模式）
+* 支持更多的`PSR`规范
+* 原生多应用支持
+* 更强大和易用的查询
+* 全新的事件系统
+* 模型事件和数据库事件统一纳入事件系统
+* 模板引擎分离出核心
+* 内部功能中间件化
+* SESSION/Cookie机制改进
+* 对Swoole以及协程支持改进
+* 对IDE更加友好
+* 统一和精简大量用法
+
+## 安装
+
+~~~
+composer create-project topthink/think tp 6.0.*
+~~~
+
+如果需要更新框架使用
+~~~
+composer update topthink/framework
+~~~
+
+## 文档
+
+[完全开发手册](https://www.kancloud.cn/manual/thinkphp6_0/content)
+
+## 参与开发
+
+请参阅 [ThinkPHP 核心框架包](https://github.com/top-think/framework)。
+
+## 版权信息
+
+ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
+
+本项目包含的第三方源码和二进制文件之版权信息另行标注。
+
+版权所有Copyright © 2006-2020 by ThinkPHP (http://thinkphp.cn)
+
+All rights reserved。
+
+ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
+
+更多细节参阅 [LICENSE.txt](LICENSE.txt)
