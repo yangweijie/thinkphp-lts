@@ -1,0 +1,5668 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="./index_files/favicon.png">
+	<meta name="description" content="ThinkPHP Cheat Sheet , Codes , function , methods of laravel framework">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="@yangweijie">
+	<title>ThinkPHP 6.0.8 速查表</title>
+	<link rel="stylesheet" href="./index_files/normalize.css" />
+	<link rel="stylesheet" href="./index_files/foundation.min.css" />
+	<link rel="stylesheet" href="./index_files/font-awesome.min.css" />
+	<link rel="stylesheet" href="./index_files/page.css" />
+</head>
+
+<body>
+	<div class="off-canvas-wrapper wrapper-container">
+		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+			<div class="off-canvas position-left sidebar-canvas" id="offCanvasLeft" data-off-canvas data-position="left">
+				<button class="close-button" aria-label="Close menu" type="button" data-close>
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<ul class="mobile-ofc vertical menu">
+					<li>
+						<button class="warning hollow button check-all-button">查看全部</button>
+					</li>
+					<li>
+						<ul class="submenu menu vertical mobile-cmd-cell" data-submenu></ul>
+					</li>
+				</ul>
+			</div>
+			<div class="off-canvas-content" data-off-canvas-content>
+				<div class="title-bar hide-for-medium">
+					<div class="title-bar-left">
+						<button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+					</div>
+				</div>
+			</div>
+			<a href="#top" id="top-button" title="Top"><i class="icon-arrow-up"></i></a>
+			<a href="#" class="comments-toggle" title="隐藏/展示代码注释"><i class="icon-eye-close"></i></a>
+			<div class="row full-width">
+				<div class="large-2 columns code-column sidebar">
+					<h5 class="sidebar-title"><a href="index.html">ThinkPHP 5.0 速查表</a></h5>
+                    <h5 class="sidebar-title"><a href="index_tp5_1.html">ThinkPHP 5.1 速查表</a></h5>
+                    <h5 class="sidebar-title">ThinkPHP 6.0 速查表</h5>
+					<hr class="horizonal-line">
+					<div class="show-for-medium">
+						<button class="warning hollow button check-all-button">查看全部</button>
+						<div class="clearfix"></div>
+						<ul class="sidebar-menu">
+						</ul>
+						<div class="clearfix"></div>
+						<hr class="horizonal-line">
+					</div>
+										<p>本速查表里的类都是think为命名空间的，实例化时省去了 &nbsp;use。用的时候注意。</p><p>本速查表里会有四种方法的调用：</p><p>&nbsp; &nbsp; 公有方法 $class = new Class(); &nbsp;$class-&gt;foo();<br></p><p>&nbsp; &nbsp; 公有静态 Class::foo();<br></p><p>&nbsp; &nbsp; 私有方法 $this-&gt;foo();<br></p><p>&nbsp; &nbsp; 私有静态 self::foo();<br></p><p>关于注释，为了简洁，/** 的单行注释被我改为了 //&nbsp;</p><p><br></p>
+					<hr class="horizonal-line">
+									</div>
+				<div class="large-10 columns code-column code-container">
+					<div class="grid">
+												<section class="cmd-description grid-item">
+							<h4><a name="app" href="#app">App</a>
+							<a href="#" title="App @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$App = new App();
+
+/**
+ * 注册服务
+ * @access public
+ * @param Service|string $service 服务
+ * @param bool   $force   强制重新注册
+ * @return Service|null
+ */
+App-&gt;register($service, $force = false)
+
+
+/**
+ * 执行服务
+ * @access public
+ * @param Service $service 服务
+ * @return mixed
+ */
+App-&gt;bootService($service)
+
+
+/**
+ * 获取服务
+ * @param string|Service $service
+ * @return Service|null
+ */
+App-&gt;getService($service)
+
+
+/**
+ * 开启应用调试模式
+ * @access public
+ * @param bool $debug 开启应用调试模式
+ * @return $this
+ */
+App-&gt;debug($debug = true)
+
+
+/**
+ * 是否为调试模式
+ * @access public
+ * @return bool
+ */
+App-&gt;isDebug()
+
+
+/**
+ * 设置应用命名空间
+ * @access public
+ * @param string $namespace 应用命名空间
+ * @return $this
+ */
+App-&gt;setNamespace($namespace)
+
+
+/**
+ * 获取应用类库命名空间
+ * @access public
+ * @return string
+ */
+App-&gt;getNamespace()
+
+
+/**
+ * 设置环境变量标识
+ * @access public
+ * @param string $name 环境标识
+ * @return $this
+ */
+App-&gt;setEnvName($name)
+
+
+/**
+ * 获取框架版本
+ * @access public
+ * @return string
+ */
+App-&gt;version()
+
+
+/**
+ * 获取应用根目录
+ * @access public
+ * @return string
+ */
+App-&gt;getRootPath()
+
+
+/**
+ * 获取应用基础目录
+ * @access public
+ * @return string
+ */
+App-&gt;getBasePath()
+
+
+/**
+ * 获取当前应用目录
+ * @access public
+ * @return string
+ */
+App-&gt;getAppPath()
+
+
+/**
+ * 设置应用目录
+ * @param string $path 应用目录
+ */
+App-&gt;setAppPath($path)
+
+
+/**
+ * 获取应用运行时目录
+ * @access public
+ * @return string
+ */
+App-&gt;getRuntimePath()
+
+
+/**
+ * 设置runtime目录
+ * @param string $path 定义目录
+ */
+App-&gt;setRuntimePath($path)
+
+
+/**
+ * 获取核心框架目录
+ * @access public
+ * @return string
+ */
+App-&gt;getThinkPath()
+
+
+/**
+ * 获取应用配置目录
+ * @access public
+ * @return string
+ */
+App-&gt;getConfigPath()
+
+
+/**
+ * 获取配置后缀
+ * @access public
+ * @return string
+ */
+App-&gt;getConfigExt()
+
+
+/**
+ * 获取应用开启时间
+ * @access public
+ * @return float
+ */
+App-&gt;getBeginTime()
+
+
+/**
+ * 获取应用初始内存占用
+ * @access public
+ * @return integer
+ */
+App-&gt;getBeginMem()
+
+
+/**
+ * 加载环境变量定义
+ * @access public
+ * @param string $envName 环境标识
+ * @return void
+ */
+App-&gt;loadEnv($envName = '')
+
+
+/**
+ * 初始化应用
+ * @access public
+ * @return $this
+ */
+App-&gt;initialize()
+
+
+/**
+ * 是否初始化过
+ * @return bool
+ */
+App-&gt;initialized()
+
+
+/**
+ * 加载语言包
+ * @param string $langset 语言
+ * @return void
+ */
+App-&gt;loadLangPack($langset)
+
+
+/**
+ * 引导应用
+ * @access public
+ * @return void
+ */
+App-&gt;boot()
+
+
+/**
+ * 加载应用文件和配置
+ * @access protected
+ * @return void
+ */
+$this-&gt;load()
+
+
+/**
+ * 调试模式设置
+ * @access protected
+ * @return void
+ */
+$this-&gt;debugModeInit()
+
+
+/**
+ * 注册应用事件
+ * @access protected
+ * @param array $event 事件数据
+ * @return void
+ */
+App-&gt;loadEvent($event)
+
+
+/**
+ * 解析应用类的类名
+ * @access public
+ * @param string $layer 层名 controller model ...
+ * @param string $name  类名
+ * @return string
+ */
+App-&gt;parseClass($layer, $name)
+
+
+/**
+ * 是否运行在命令行下
+ * @return bool
+ */
+App-&gt;runningInConsole()
+
+
+/**
+ * 获取应用根目录
+ * @access protected
+ * @return string
+ */
+$this-&gt;getDefaultRootPath()
+
+
+/**
+ * 获取当前容器的实例（单例）
+ * @access public
+ * @return static
+ */
+App::getInstance()
+
+
+/**
+ * 设置当前容器的实例
+ * @access public
+ * @param object|Closure $instance
+ * @return void
+ */
+App::setInstance($instance)
+
+
+/**
+ * 注册一个容器对象回调
+ *
+ * @param string|Closure $abstract
+ * @param Closure|null   $callback
+ * @return void
+ */
+App-&gt;resolving($abstract, $callback = NULL)
+
+
+/**
+ * 获取容器中的对象实例 不存在则创建
+ * @access public
+ * @param string $abstract类名或者标识
+ * @param array|true $vars变量
+ * @param bool   $newInstance 是否每次创建新的实例
+ * @return object
+ */
+App::pull($abstract, $vars = [], $newInstance = false)
+
+
+/**
+ * 获取容器中的对象实例
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @return object
+ */
+App-&gt;get($abstract)
+
+
+/**
+ * 绑定一个类、闭包、实例、接口实现到容器
+ * @access public
+ * @param string|array $abstract 类标识、接口
+ * @param mixed$concrete 要绑定的类、闭包或者实例
+ * @return $this
+ */
+App-&gt;bind($abstract, $concrete = NULL)
+
+
+/**
+ * 根据别名获取真实类名
+ * @param  string $abstract
+ * @return string
+ */
+App-&gt;getAlias($abstract)
+
+
+/**
+ * 绑定一个类实例到容器
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @param object $instance 类的实例
+ * @return $this
+ */
+App-&gt;instance($abstract, $instance)
+
+
+/**
+ * 判断容器中是否存在类及标识
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @return bool
+ */
+App-&gt;bound($abstract)
+
+
+/**
+ * 判断容器中是否存在类及标识
+ * @access public
+ * @param string $name 类名或者标识
+ * @return bool
+ */
+App-&gt;has($name)
+
+
+/**
+ * 判断容器中是否存在对象实例
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @return bool
+ */
+App-&gt;exists($abstract)
+
+
+/**
+ * 创建类的实例 已经存在则直接获取
+ * @access public
+ * @param string $abstract类名或者标识
+ * @param array  $vars变量
+ * @param bool   $newInstance 是否每次创建新的实例
+ * @return mixed
+ */
+App-&gt;make($abstract, $vars = [], $newInstance = false)
+
+
+/**
+ * 删除容器中的对象实例
+ * @access public
+ * @param string $name 类名或者标识
+ * @return void
+ */
+App-&gt;delete($name)
+
+
+/**
+ * 执行函数或者闭包方法 支持参数调用
+ * @access public
+ * @param string|Closure $function 函数或者闭包
+ * @param array  $vars 参数
+ * @return mixed
+ */
+App-&gt;invokeFunction($function, $vars = [])
+
+
+/**
+ * 调用反射执行类的方法 支持参数绑定
+ * @access public
+ * @param mixed $method 方法
+ * @param array $vars   参数
+ * @param bool  $accessible 设置是否可访问
+ * @return mixed
+ */
+App-&gt;invokeMethod($method, $vars = [], $accessible = false)
+
+
+/**
+ * 调用反射执行类的方法 支持参数绑定
+ * @access public
+ * @param object $instance 对象实例
+ * @param mixed  $reflect  反射类
+ * @param array  $vars 参数
+ * @return mixed
+ */
+App-&gt;invokeReflectMethod($instance, $reflect, $vars = [])
+
+
+/**
+ * 调用反射执行callable 支持参数绑定
+ * @access public
+ * @param mixed $callable
+ * @param array $vars   参数
+ * @param bool  $accessible 设置是否可访问
+ * @return mixed
+ */
+App-&gt;invoke($callable, $vars = [], $accessible = false)
+
+
+/**
+ * 调用反射执行类的实例化 支持依赖注入
+ * @access public
+ * @param string $class 类名
+ * @param array  $vars  参数
+ * @return mixed
+ */
+App-&gt;invokeClass($class, $vars = [])
+
+
+/**
+ * 执行invokeClass回调
+ * @access protected
+ * @param string $class  对象类名
+ * @param object $object 容器对象实例
+ * @return void
+ */
+$this-&gt;invokeAfter($class, $object)
+
+
+/**
+ * 绑定参数
+ * @access protected
+ * @param ReflectionFunctionAbstract $reflect 反射类
+ * @param array  $vars参数
+ * @return array
+ */
+$this-&gt;bindParams($reflect, $vars = [])
+
+
+/**
+ * 创建工厂对象实例
+ * @param string $name  工厂类名
+ * @param string $namespace 默认命名空间
+ * @param array  $args
+ * @return mixed
+ * @deprecated
+ * @access public
+ */
+App::factory($name, $namespace = '', $args)
+
+
+/**
+ * 获取对象类型的参数值
+ * @access protected
+ * @param string $className 类名
+ * @param array  $vars  参数
+ * @return mixed
+ */
+$this-&gt;getObjectParam($className, &amp;$vars)
+
+
+
+App-&gt;__set($name, $value)
+
+
+
+App-&gt;__get($name)
+
+
+
+App-&gt;__isset($name)
+
+
+
+App-&gt;__unset($name)
+
+
+
+App-&gt;offsetExists($key)
+
+
+
+App-&gt;offsetGet($key)
+
+
+
+App-&gt;offsetSet($key, $value)
+
+
+
+App-&gt;offsetUnset($key)
+
+
+
+App-&gt;count()
+
+
+
+App-&gt;getIterator()
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="cache" href="#cache">Cache</a>
+							<a href="#" title="Cache @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Cache = new Cache();
+
+/**
+ * 默认驱动
+ * @return string|null
+ */
+Cache-&gt;getDefaultDriver()
+
+
+/**
+ * 获取缓存配置
+ * @access public
+ * @param null|string $name名称
+ * @param mixed   $default 默认值
+ * @return mixed
+ */
+Cache-&gt;getConfig($name = NULL, $default = NULL)
+
+
+/**
+ * 获取驱动配置
+ * @param string $store
+ * @param string $name
+ * @param null   $default
+ * @return array
+ */
+Cache-&gt;getStoreConfig($store, $name = NULL, $default = NULL)
+
+
+
+$this-&gt;resolveType($name)
+
+
+
+$this-&gt;resolveConfig($name)
+
+
+/**
+ * 连接或者切换缓存
+ * @access public
+ * @param string $name 连接配置名
+ * @return Driver
+ */
+Cache-&gt;store($name = NULL)
+
+
+/**
+ * 清空缓冲池
+ * @access public
+ * @return bool
+ */
+Cache-&gt;clear()
+
+
+/**
+ * 读取缓存
+ * @access public
+ * @param string $key 缓存变量名
+ * @param mixed  $default 默认值
+ * @return mixed
+ */
+Cache-&gt;get($key, $default = NULL)
+
+
+/**
+ * 写入缓存
+ * @access public
+ * @param string$key   缓存变量名
+ * @param mixed $value 存储数据
+ * @param int|\DateTime $ttl   有效时间 0为永久
+ * @return bool
+ */
+Cache-&gt;set($key, $value, $ttl = NULL)
+
+
+/**
+ * 删除缓存
+ * @access public
+ * @param string $key 缓存变量名
+ * @return bool
+ */
+Cache-&gt;delete($key)
+
+
+/**
+ * 读取缓存
+ * @access public
+ * @param iterable $keys缓存变量名
+ * @param mixed$default 默认值
+ * @return iterable
+ * @throws InvalidArgumentException
+ */
+Cache-&gt;getMultiple($keys, $default = NULL)
+
+
+/**
+ * 写入缓存
+ * @access public
+ * @param iterable   $values 缓存数据
+ * @param null|int|\DateInterval $ttl有效时间 0为永久
+ * @return bool
+ */
+Cache-&gt;setMultiple($values, $ttl = NULL)
+
+
+/**
+ * 删除缓存
+ * @access public
+ * @param iterable $keys 缓存变量名
+ * @return bool
+ * @throws InvalidArgumentException
+ */
+Cache-&gt;deleteMultiple($keys)
+
+
+/**
+ * 判断缓存是否存在
+ * @access public
+ * @param string $key 缓存变量名
+ * @return bool
+ */
+Cache-&gt;has($key)
+
+
+/**
+ * 缓存标签
+ * @access public
+ * @param string|array $name 标签名
+ * @return TagSet
+ */
+Cache-&gt;tag($name)
+
+
+/**
+ * 获取驱动实例
+ * @param null|string $name
+ * @return mixed
+ */
+$this-&gt;driver($name = NULL)
+
+
+/**
+ * 获取驱动实例
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;getDriver($name)
+
+
+/**
+ * 获取驱动类
+ * @param string $type
+ * @return string
+ */
+$this-&gt;resolveClass($type)
+
+
+/**
+ * 获取驱动参数
+ * @param $name
+ * @return array
+ */
+$this-&gt;resolveParams($name)
+
+
+/**
+ * 创建驱动
+ *
+ * @param string $name
+ * @return mixed
+ *
+ */
+$this-&gt;createDriver($name)
+
+
+/**
+ * 移除一个驱动实例
+ *
+ * @param array|string|null $name
+ * @return $this
+ */
+Cache-&gt;forgetDriver($name = NULL)
+
+
+/**
+ * 动态调用
+ * @param string $method
+ * @param array  $parameters
+ * @return mixed
+ */
+Cache-&gt;__call($method, $parameters)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="config" href="#config">Config</a>
+							<a href="#" title="Config @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Config = new Config();
+
+
+Config::__make($app)
+
+
+/**
+ * 加载配置文件（多种格式）
+ * @access public
+ * @param  string $file 配置文件名
+ * @param  string $name 一级配置名
+ * @return array
+ */
+Config-&gt;load($file, $name = '')
+
+
+/**
+ * 解析配置文件
+ * @access public
+ * @param  string $file 配置文件名
+ * @param  string $name 一级配置名
+ * @return array
+ */
+$this-&gt;parse($file, $name)
+
+
+/**
+ * 检测配置是否存在
+ * @access public
+ * @param  string $name 配置参数名（支持多级配置 .号分割）
+ * @return bool
+ */
+Config-&gt;has($name)
+
+
+/**
+ * 获取一级配置
+ * @access protected
+ * @param  string $name 一级配置名
+ * @return array
+ */
+$this-&gt;pull($name)
+
+
+/**
+ * 获取配置参数 为空则获取所有配置
+ * @access public
+ * @param  string $name配置参数名（支持多级配置 .号分割）
+ * @param  mixed  $default 默认值
+ * @return mixed
+ */
+Config-&gt;get($name = NULL, $default = NULL)
+
+
+/**
+ * 设置配置参数 name为数组则为批量设置
+ * @access public
+ * @param  array  $config 配置参数
+ * @param  string $name 配置名
+ * @return array
+ */
+Config-&gt;set($config, $name = NULL)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="console" href="#console">Console</a>
+							<a href="#" title="Console @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Console = new Console();
+
+/**
+ * 初始化
+ */
+$this-&gt;initialize()
+
+
+/**
+ * 构造request
+ */
+$this-&gt;makeRequest()
+
+
+/**
+ * 添加初始化器
+ * @param Closure $callback
+ */
+Console::starting($callback)
+
+
+/**
+ * 清空启动器
+ */
+Console::flushStartCallbacks()
+
+
+/**
+ * 设置执行用户
+ * @param $user
+ */
+Console::setUser($user)
+
+
+/**
+ * 启动
+ */
+$this-&gt;start()
+
+
+/**
+ * 加载指令
+ * @access protected
+ */
+$this-&gt;loadCommands()
+
+
+/**
+ * @access public
+ * @param string $command
+ * @param array $parameters
+ * @param string $driver
+ * @return Output|Buffer
+ */
+Console-&gt;call($command, $parameters = [], $driver = 'buffer')
+
+
+/**
+ * 执行当前的指令
+ * @access public
+ * @return int
+ * @throws \Exception
+ * @api
+ */
+Console-&gt;run()
+
+
+/**
+ * 执行指令
+ * @access public
+ * @param Input $input
+ * @param Output $output
+ * @return int
+ */
+Console-&gt;doRun($input, $output)
+
+
+/**
+ * 设置输入参数定义
+ * @access public
+ * @param InputDefinition $definition
+ */
+Console-&gt;setDefinition($definition)
+
+
+/**
+ * 获取输入参数定义
+ * @access public
+ * @return InputDefinition The InputDefinition instance
+ */
+Console-&gt;getDefinition()
+
+
+/**
+ * Gets the help message.
+ * @access public
+ * @return string A help message.
+ */
+Console-&gt;getHelp()
+
+
+/**
+ * 是否捕获异常
+ * @access public
+ * @param bool $boolean
+ * @api
+ */
+Console-&gt;setCatchExceptions($boolean)
+
+
+/**
+ * 是否自动退出
+ * @access public
+ * @param bool $boolean
+ * @api
+ */
+Console-&gt;setAutoExit($boolean)
+
+
+/**
+ * 获取完整的版本号
+ * @access public
+ * @return string
+ */
+Console-&gt;getLongVersion()
+
+
+/**
+ * 添加指令集
+ * @access public
+ * @param array $commands
+ */
+Console-&gt;addCommands($commands)
+
+
+/**
+ * 添加一个指令
+ * @access public
+ * @param string|Command $command 指令对象或者指令类名
+ * @param string $name 指令名 留空则自动获取
+ * @return Command|void
+ */
+Console-&gt;addCommand($command, $name = '')
+
+
+/**
+ * 获取指令
+ * @access public
+ * @param string $name 指令名称
+ * @return Command
+ * @throws InvalidArgumentException
+ */
+Console-&gt;getCommand($name)
+
+
+/**
+ * 某个指令是否存在
+ * @access public
+ * @param string $name 指令名称
+ * @return bool
+ */
+Console-&gt;hasCommand($name)
+
+
+/**
+ * 获取所有的命名空间
+ * @access public
+ * @return array
+ */
+Console-&gt;getNamespaces()
+
+
+/**
+ * 查找注册命名空间中的名称或缩写。
+ * @access public
+ * @param string $namespace
+ * @return string
+ * @throws InvalidArgumentException
+ */
+Console-&gt;findNamespace($namespace)
+
+
+/**
+ * 查找指令
+ * @access public
+ * @param string $name 名称或者别名
+ * @return Command
+ * @throws InvalidArgumentException
+ */
+Console-&gt;find($name)
+
+
+/**
+ * 获取所有的指令
+ * @access public
+ * @param string $namespace 命名空间
+ * @return Command[]
+ * @api
+ */
+Console-&gt;all($namespace = NULL)
+
+
+/**
+ * 配置基于用户的参数和选项的输入和输出实例。
+ * @access protected
+ * @param Input $input 输入实例
+ * @param Output $output 输出实例
+ */
+$this-&gt;configureIO($input, $output)
+
+
+/**
+ * 执行指令
+ * @access protected
+ * @param Command $command 指令实例
+ * @param Input $input 输入实例
+ * @param Output $output 输出实例
+ * @return int
+ * @throws \Exception
+ */
+$this-&gt;doRunCommand($command, $input, $output)
+
+
+/**
+ * 获取指令的基础名称
+ * @access protected
+ * @param Input $input
+ * @return string
+ */
+$this-&gt;getCommandName($input)
+
+
+/**
+ * 获取默认输入定义
+ * @access protected
+ * @return InputDefinition
+ */
+$this-&gt;getDefaultInputDefinition()
+
+
+/**
+ * 获取可能的建议
+ * @access private
+ * @param array $abbrevs
+ * @return string
+ */
+$this-&gt;getAbbreviationSuggestions($abbrevs)
+
+
+/**
+ * 返回命名空间部分
+ * @access public
+ * @param string $name 指令
+ * @param int $limit 部分的命名空间的最大数量
+ * @return string
+ */
+Console-&gt;extractNamespace($name, $limit = 0)
+
+
+/**
+ * 查找可替代的建议
+ * @access private
+ * @param string $name
+ * @param array|\Traversable $collection
+ * @return array
+ */
+$this-&gt;findAlternatives($name, $collection)
+
+
+/**
+ * 返回所有的命名空间
+ * @access private
+ * @param string $name
+ * @return array
+ */
+$this-&gt;extractAllNamespaces($name)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="container" href="#container">Container</a>
+							<a href="#" title="Container @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Container = new Container();
+
+/**
+ * 获取当前容器的实例（单例）
+ * @access public
+ * @return static
+ */
+Container::getInstance()
+
+
+/**
+ * 设置当前容器的实例
+ * @access public
+ * @param object|Closure $instance
+ * @return void
+ */
+Container::setInstance($instance)
+
+
+/**
+ * 注册一个容器对象回调
+ *
+ * @param string|Closure $abstract
+ * @param Closure|null   $callback
+ * @return void
+ */
+Container-&gt;resolving($abstract, $callback = NULL)
+
+
+/**
+ * 获取容器中的对象实例 不存在则创建
+ * @access public
+ * @param string $abstract类名或者标识
+ * @param array|true $vars变量
+ * @param bool   $newInstance 是否每次创建新的实例
+ * @return object
+ */
+Container::pull($abstract, $vars = [], $newInstance = false)
+
+
+/**
+ * 获取容器中的对象实例
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @return object
+ */
+Container-&gt;get($abstract)
+
+
+/**
+ * 绑定一个类、闭包、实例、接口实现到容器
+ * @access public
+ * @param string|array $abstract 类标识、接口
+ * @param mixed$concrete 要绑定的类、闭包或者实例
+ * @return $this
+ */
+Container-&gt;bind($abstract, $concrete = NULL)
+
+
+/**
+ * 根据别名获取真实类名
+ * @param  string $abstract
+ * @return string
+ */
+Container-&gt;getAlias($abstract)
+
+
+/**
+ * 绑定一个类实例到容器
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @param object $instance 类的实例
+ * @return $this
+ */
+Container-&gt;instance($abstract, $instance)
+
+
+/**
+ * 判断容器中是否存在类及标识
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @return bool
+ */
+Container-&gt;bound($abstract)
+
+
+/**
+ * 判断容器中是否存在类及标识
+ * @access public
+ * @param string $name 类名或者标识
+ * @return bool
+ */
+Container-&gt;has($name)
+
+
+/**
+ * 判断容器中是否存在对象实例
+ * @access public
+ * @param string $abstract 类名或者标识
+ * @return bool
+ */
+Container-&gt;exists($abstract)
+
+
+/**
+ * 创建类的实例 已经存在则直接获取
+ * @access public
+ * @param string $abstract类名或者标识
+ * @param array  $vars变量
+ * @param bool   $newInstance 是否每次创建新的实例
+ * @return mixed
+ */
+Container-&gt;make($abstract, $vars = [], $newInstance = false)
+
+
+/**
+ * 删除容器中的对象实例
+ * @access public
+ * @param string $name 类名或者标识
+ * @return void
+ */
+Container-&gt;delete($name)
+
+
+/**
+ * 执行函数或者闭包方法 支持参数调用
+ * @access public
+ * @param string|Closure $function 函数或者闭包
+ * @param array  $vars 参数
+ * @return mixed
+ */
+Container-&gt;invokeFunction($function, $vars = [])
+
+
+/**
+ * 调用反射执行类的方法 支持参数绑定
+ * @access public
+ * @param mixed $method 方法
+ * @param array $vars   参数
+ * @param bool  $accessible 设置是否可访问
+ * @return mixed
+ */
+Container-&gt;invokeMethod($method, $vars = [], $accessible = false)
+
+
+/**
+ * 调用反射执行类的方法 支持参数绑定
+ * @access public
+ * @param object $instance 对象实例
+ * @param mixed  $reflect  反射类
+ * @param array  $vars 参数
+ * @return mixed
+ */
+Container-&gt;invokeReflectMethod($instance, $reflect, $vars = [])
+
+
+/**
+ * 调用反射执行callable 支持参数绑定
+ * @access public
+ * @param mixed $callable
+ * @param array $vars   参数
+ * @param bool  $accessible 设置是否可访问
+ * @return mixed
+ */
+Container-&gt;invoke($callable, $vars = [], $accessible = false)
+
+
+/**
+ * 调用反射执行类的实例化 支持依赖注入
+ * @access public
+ * @param string $class 类名
+ * @param array  $vars  参数
+ * @return mixed
+ */
+Container-&gt;invokeClass($class, $vars = [])
+
+
+/**
+ * 执行invokeClass回调
+ * @access protected
+ * @param string $class  对象类名
+ * @param object $object 容器对象实例
+ * @return void
+ */
+$this-&gt;invokeAfter($class, $object)
+
+
+/**
+ * 绑定参数
+ * @access protected
+ * @param ReflectionFunctionAbstract $reflect 反射类
+ * @param array  $vars参数
+ * @return array
+ */
+$this-&gt;bindParams($reflect, $vars = [])
+
+
+/**
+ * 创建工厂对象实例
+ * @param string $name  工厂类名
+ * @param string $namespace 默认命名空间
+ * @param array  $args
+ * @return mixed
+ * @deprecated
+ * @access public
+ */
+Container::factory($name, $namespace = '', $args)
+
+
+/**
+ * 获取对象类型的参数值
+ * @access protected
+ * @param string $className 类名
+ * @param array  $vars  参数
+ * @return mixed
+ */
+$this-&gt;getObjectParam($className, &amp;$vars)
+
+
+
+Container-&gt;__set($name, $value)
+
+
+
+Container-&gt;__get($name)
+
+
+
+Container-&gt;__isset($name)
+
+
+
+Container-&gt;__unset($name)
+
+
+
+Container-&gt;offsetExists($key)
+
+
+
+Container-&gt;offsetGet($key)
+
+
+
+Container-&gt;offsetSet($key, $value)
+
+
+
+Container-&gt;offsetUnset($key)
+
+
+
+Container-&gt;count()
+
+
+
+Container-&gt;getIterator()
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="cookie" href="#cookie">Cookie</a>
+							<a href="#" title="Cookie @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Cookie = new Cookie();
+
+
+Cookie::__make($request, $config)
+
+
+/**
+ * 获取cookie
+ * @access public
+ * @param  mixed  $name 数据名称
+ * @param  string $default 默认值
+ * @return mixed
+ */
+Cookie-&gt;get($name = '', $default = NULL)
+
+
+/**
+ * 是否存在Cookie参数
+ * @access public
+ * @param  string $name 变量名
+ * @return bool
+ */
+Cookie-&gt;has($name)
+
+
+/**
+ * Cookie 设置
+ *
+ * @access public
+ * @param  string $name  cookie名称
+ * @param  string $value cookie值
+ * @param  mixed  $option 可选参数
+ * @return void
+ */
+Cookie-&gt;set($name, $value, $option = NULL)
+
+
+/**
+ * Cookie 保存
+ *
+ * @access public
+ * @param  string $name  cookie名称
+ * @param  string $value cookie值
+ * @param  int$expire 有效期
+ * @param  array  $option 可选参数
+ * @return void
+ */
+$this-&gt;setCookie($name, $value, $expire, $option = [])
+
+
+/**
+ * 永久保存Cookie数据
+ * @access public
+ * @param  string $name  cookie名称
+ * @param  string $value cookie值
+ * @param  mixed  $option 可选参数 可能会是 null|integer|string
+ * @return void
+ */
+Cookie-&gt;forever($name, $value = '', $option = NULL)
+
+
+/**
+ * Cookie删除
+ * @access public
+ * @param  string $name cookie名称
+ * @return void
+ */
+Cookie-&gt;delete($name)
+
+
+/**
+ * 获取cookie保存数据
+ * @access public
+ * @return array
+ */
+Cookie-&gt;getCookie()
+
+
+/**
+ * 保存Cookie
+ * @access public
+ * @return void
+ */
+Cookie-&gt;save()
+
+
+/**
+ * 保存Cookie
+ * @access public
+ * @param  string $name cookie名称
+ * @param  string $value cookie值
+ * @param  int$expire cookie过期时间
+ * @param  string $path 有效的服务器路径
+ * @param  string $domain 有效域名/子域名
+ * @param  bool   $secure 是否仅仅通过HTTPS
+ * @param  bool   $httponly 仅可通过HTTP访问
+ * @param  string $samesite 防止CSRF攻击和用户追踪
+ * @return void
+ */
+$this-&gt;saveCookie($name, $value, $expire, $path, $domain, $secure, $httponly, $samesite)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="db" href="#db">Db</a>
+							<a href="#" title="Db @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Db = new Db();
+
+/**
+ * @param Event  $event
+ * @param Config $config
+ * @param Log$log
+ * @param Cache  $cache
+ * @return Db
+ * @codeCoverageIgnore
+ */
+Db::__make($event, $config, $log, $cache)
+
+
+/**
+ * 注入模型对象
+ * @access public
+ * @return void
+ */
+$this-&gt;modelMaker()
+
+
+/**
+ * 设置配置对象
+ * @access public
+ * @param Config $config 配置对象
+ * @return void
+ */
+Db-&gt;setConfig($config)
+
+
+/**
+ * 获取配置参数
+ * @access public
+ * @param string $name配置参数
+ * @param mixed  $default 默认值
+ * @return mixed
+ */
+Db-&gt;getConfig($name = '', $default = NULL)
+
+
+/**
+ * 设置Event对象
+ * @param Event $event
+ */
+Db-&gt;setEvent($event)
+
+
+/**
+ * 注册回调方法
+ * @access public
+ * @param string   $event事件名
+ * @param callable $callback 回调方法
+ * @return void
+ */
+Db-&gt;event($event, $callback)
+
+
+/**
+ * 触发事件
+ * @access public
+ * @param string $event  事件名
+ * @param mixed  $params 传入参数
+ * @param bool   $once
+ * @return mixed
+ */
+Db-&gt;trigger($event, $params = NULL, $once = false)
+
+
+/**
+ * 监听SQL
+ * @access protected
+ * @return void
+ */
+Db-&gt;triggerSql()
+
+
+/**
+ * 设置缓存对象
+ * @access public
+ * @param CacheInterface $cache 缓存对象
+ * @return void
+ */
+Db-&gt;setCache($cache)
+
+
+/**
+ * 设置日志对象
+ * @access public
+ * @param LoggerInterface $log 日志对象
+ * @return void
+ */
+Db-&gt;setLog($log)
+
+
+/**
+ * 记录SQL日志
+ * @access protected
+ * @param string $log  SQL日志信息
+ * @param string $type 日志类型
+ * @return void
+ */
+Db-&gt;log($log, $type = 'sql')
+
+
+/**
+ * 获得查询日志（没有设置日志对象使用）
+ * @access public
+ * @param bool $clear 是否清空
+ * @return array
+ */
+Db-&gt;getDbLog($clear = false)
+
+
+/**
+ * 创建/切换数据库连接查询
+ * @access public
+ * @param string|null $name  连接配置标识
+ * @param bool$force 强制重新连接
+ * @return ConnectionInterface
+ */
+Db-&gt;connect($name = NULL, $force = false)
+
+
+/**
+ * 创建数据库连接实例
+ * @access protected
+ * @param string|null $name  连接标识
+ * @param bool$force 强制重新连接
+ * @return ConnectionInterface
+ */
+$this-&gt;instance($name = NULL, $force = false)
+
+
+/**
+ * 获取连接配置
+ * @param string $name
+ * @return array
+ */
+$this-&gt;getConnectionConfig($name)
+
+
+/**
+ * 创建连接
+ * @param $name
+ * @return ConnectionInterface
+ */
+$this-&gt;createConnection($name)
+
+
+/**
+ * 使用表达式设置数据
+ * @access public
+ * @param string $value 表达式
+ * @return Raw
+ */
+Db-&gt;raw($value)
+
+
+/**
+ * 更新查询次数
+ * @access public
+ * @return void
+ */
+Db-&gt;updateQueryTimes()
+
+
+/**
+ * 重置查询次数
+ * @access public
+ * @return void
+ */
+Db-&gt;clearQueryTimes()
+
+
+/**
+ * 获得查询次数
+ * @access public
+ * @return integer
+ */
+Db-&gt;getQueryTimes()
+
+
+/**
+ * 监听SQL执行
+ * @access public
+ * @param callable $callback 回调方法
+ * @return void
+ */
+Db-&gt;listen($callback)
+
+
+/**
+ * 获取监听SQL执行
+ * @access public
+ * @return array
+ */
+Db-&gt;getListen()
+
+
+
+Db-&gt;__call($method, $args)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="env" href="#env">Env</a>
+							<a href="#" title="Env @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Env = new Env();
+
+/**
+ * 读取环境变量定义文件
+ * @access public
+ * @param string $file 环境变量定义文件
+ * @return void
+ */
+Env-&gt;load($file)
+
+
+/**
+ * 获取环境变量值
+ * @access public
+ * @param string $name环境变量名
+ * @param mixed  $default 默认值
+ * @return mixed
+ */
+Env-&gt;get($name = NULL, $default = NULL)
+
+
+
+$this-&gt;getEnv($name, $default = NULL)
+
+
+/**
+ * 设置环境变量值
+ * @access public
+ * @param string|array $env   环境变量
+ * @param mixed$value 值
+ * @return void
+ */
+Env-&gt;set($env, $value = NULL)
+
+
+/**
+ * 检测是否存在环境变量
+ * @access public
+ * @param string $name 参数名
+ * @return bool
+ */
+Env-&gt;has($name)
+
+
+/**
+ * 设置环境变量
+ * @access public
+ * @param string $name  参数名
+ * @param mixed  $value 值
+ */
+Env-&gt;__set($name, $value)
+
+
+/**
+ * 获取环境变量
+ * @access public
+ * @param string $name 参数名
+ * @return mixed
+ */
+Env-&gt;__get($name)
+
+
+/**
+ * 检测是否存在环境变量
+ * @access public
+ * @param string $name 参数名
+ * @return bool
+ */
+Env-&gt;__isset($name)
+
+
+
+Env-&gt;offsetSet($name, $value)
+
+
+
+Env-&gt;offsetExists($name)
+
+
+
+Env-&gt;offsetUnset($name)
+
+
+
+Env-&gt;offsetGet($name)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="event" href="#event">Event</a>
+							<a href="#" title="Event @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Event = new Event();
+
+/**
+ * 批量注册事件监听
+ * @access public
+ * @param array $events 事件定义
+ * @return $this
+ */
+Event-&gt;listenEvents($events)
+
+
+/**
+ * 注册事件监听
+ * @access public
+ * @param string $event事件名称
+ * @param mixed  $listener 监听操作（或者类名）
+ * @param bool   $first是否优先执行
+ * @return $this
+ */
+Event-&gt;listen($event, $listener, $first = false)
+
+
+/**
+ * 是否存在事件监听
+ * @access public
+ * @param string $event 事件名称
+ * @return bool
+ */
+Event-&gt;hasListener($event)
+
+
+/**
+ * 移除事件监听
+ * @access public
+ * @param string $event 事件名称
+ * @return void
+ */
+Event-&gt;remove($event)
+
+
+/**
+ * 指定事件别名标识 便于调用
+ * @access public
+ * @param array $events 事件别名
+ * @return $this
+ */
+Event-&gt;bind($events)
+
+
+/**
+ * 注册事件订阅者
+ * @access public
+ * @param mixed $subscriber 订阅者
+ * @return $this
+ */
+Event-&gt;subscribe($subscriber)
+
+
+/**
+ * 自动注册事件观察者
+ * @access public
+ * @param string|object $observer 观察者
+ * @param null|string   $prefix   事件名前缀
+ * @return $this
+ */
+Event-&gt;observe($observer, $prefix = '')
+
+
+/**
+ * 触发事件
+ * @access public
+ * @param string|object $event  事件名称
+ * @param mixed $params 传入参数
+ * @param bool  $once   只获取一个有效返回值
+ * @return mixed
+ */
+Event-&gt;trigger($event, $params = NULL, $once = false)
+
+
+/**
+ * 触发事件(只获取一个有效返回值)
+ * @param  $event
+ * @param null $params
+ * @return mixed
+ */
+Event-&gt;until($event, $params = NULL)
+
+
+/**
+ * 执行事件调度
+ * @access protected
+ * @param mixed $event  事件方法
+ * @param mixed $params 参数
+ * @return mixed
+ */
+$this-&gt;dispatch($event, $params = NULL)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="exception" href="#exception">Exception</a>
+							<a href="#" title="Exception @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Exception = new Exception();
+
+/**
+ * 设置异常额外的Debug数据
+ * 数据将会显示为下面的格式
+ *
+ * Exception Data
+ * --------------------------------------------------
+ * Label 1
+ *   key1  value1
+ *   key2  value2
+ * Label 2
+ *   key1  value1
+ *   key2  value2
+ *
+ * @access protected
+ * @param  string $label 数据分类，用于异常页面显示
+ * @param  array  $data  需要显示的数据，必须为关联数组
+ */
+$this-&gt;setData($label, $data)
+
+
+/**
+ * 获取异常额外Debug数据
+ * 主要用于输出到异常页面便于调试
+ * @access public
+ * @return array 由setData设置的Debug数据
+ */
+Exception-&gt;getData()
+
+
+
+$this-&gt;__clone()
+
+
+
+Exception-&gt;__wakeup()
+
+
+
+Exception-&gt;getMessage()
+
+
+
+Exception-&gt;getCode()
+
+
+
+Exception-&gt;getFile()
+
+
+
+Exception-&gt;getLine()
+
+
+
+Exception-&gt;getTrace()
+
+
+
+Exception-&gt;getPrevious()
+
+
+
+Exception-&gt;getTraceAsString()
+
+
+
+Exception-&gt;__toString()
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="facade" href="#facade">Facade</a>
+							<a href="#" title="Facade @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">/**
+ * 创建Facade实例
+ * @static
+ * @access protected
+ * @param  string $class   类名或标识
+ * @param  array  $args变量
+ * @param  bool   $newInstance 是否每次创建新的实例
+ * @return object
+ */
+self::createFacade($class = '', $args = [], $newInstance = false)
+
+
+/**
+ * 获取当前Facade对应类名
+ * @access protected
+ * @return string
+ */
+self::getFacadeClass()
+
+
+/**
+ * 带参数实例化当前Facade类
+ * @access public
+ * @return object
+ */
+Facade::instance($args)
+
+
+/**
+ * 调用类的实例
+ * @access public
+ * @param  string $class   类名或者标识
+ * @param  array|true $args变量
+ * @param  bool   $newInstance 是否每次创建新的实例
+ * @return object
+ */
+Facade::make($class, $args = [], $newInstance = false)
+
+
+
+Facade::__callStatic($method, $params)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="file" href="#file">File</a>
+							<a href="#" title="File @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$File = new File();
+
+/**
+ * 获取文件的哈希散列值
+ * @access public
+ * @param string $type
+ * @return string
+ */
+File-&gt;hash($type = 'sha1')
+
+
+/**
+ * 获取文件的MD5值
+ * @access public
+ * @return string
+ */
+File-&gt;md5()
+
+
+/**
+ * 获取文件的SHA1值
+ * @access public
+ * @return string
+ */
+File-&gt;sha1()
+
+
+/**
+ * 获取文件类型信息
+ * @access public
+ * @return string
+ */
+File-&gt;getMime()
+
+
+/**
+ * 移动文件
+ * @access public
+ * @param string  $directory 保存路径
+ * @param string|null $name  保存的文件名
+ * @return File
+ */
+File-&gt;move($directory, $name = NULL)
+
+
+/**
+ * 实例化一个新文件
+ * @param string  $directory
+ * @param null|string $name
+ * @return File
+ */
+$this-&gt;getTargetFile($directory, $name = NULL)
+
+
+/**
+ * 获取文件名
+ * @param string $name
+ * @return string
+ */
+$this-&gt;getName($name)
+
+
+/**
+ * 文件扩展名
+ * @return string
+ */
+File-&gt;extension()
+
+
+/**
+ * 自动生成文件名
+ * @access public
+ * @param string|\Closure $rule
+ * @return string
+ */
+File-&gt;hashName($rule = '')
+
+
+
+File-&gt;getPath()
+
+
+
+File-&gt;getFilename()
+
+
+
+File-&gt;getExtension()
+
+
+
+File-&gt;getBasename($suffix)
+
+
+
+File-&gt;getPathname()
+
+
+
+File-&gt;getPerms()
+
+
+
+File-&gt;getInode()
+
+
+
+File-&gt;getSize()
+
+
+
+File-&gt;getOwner()
+
+
+
+File-&gt;getGroup()
+
+
+
+File-&gt;getATime()
+
+
+
+File-&gt;getMTime()
+
+
+
+File-&gt;getCTime()
+
+
+
+File-&gt;getType()
+
+
+
+File-&gt;isWritable()
+
+
+
+File-&gt;isReadable()
+
+
+
+File-&gt;isExecutable()
+
+
+
+File-&gt;isFile()
+
+
+
+File-&gt;isDir()
+
+
+
+File-&gt;isLink()
+
+
+
+File-&gt;getLinkTarget()
+
+
+
+File-&gt;getRealPath()
+
+
+
+File-&gt;getFileInfo($class_name)
+
+
+
+File-&gt;getPathInfo($class_name)
+
+
+
+File-&gt;openFile($open_mode, $use_include_path, $context)
+
+
+
+File-&gt;setFileClass($class_name)
+
+
+
+File-&gt;setInfoClass($class_name)
+
+
+
+File-&gt;__debugInfo()
+
+
+
+File-&gt;_bad_state_ex()
+
+
+
+File-&gt;__toString()
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="filesystem" href="#filesystem">Filesystem</a>
+							<a href="#" title="Filesystem @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Filesystem = new Filesystem();
+
+/**
+ * @param null|string $name
+ * @return Driver
+ */
+Filesystem-&gt;disk($name = NULL)
+
+
+
+$this-&gt;resolveType($name)
+
+
+
+$this-&gt;resolveConfig($name)
+
+
+/**
+ * 获取缓存配置
+ * @access public
+ * @param null|string $name名称
+ * @param mixed   $default 默认值
+ * @return mixed
+ */
+Filesystem-&gt;getConfig($name = NULL, $default = NULL)
+
+
+/**
+ * 获取磁盘配置
+ * @param string $disk
+ * @param null   $name
+ * @param null   $default
+ * @return array
+ */
+Filesystem-&gt;getDiskConfig($disk, $name = NULL, $default = NULL)
+
+
+/**
+ * 默认驱动
+ * @return string|null
+ */
+Filesystem-&gt;getDefaultDriver()
+
+
+/**
+ * 获取驱动实例
+ * @param null|string $name
+ * @return mixed
+ */
+$this-&gt;driver($name = NULL)
+
+
+/**
+ * 获取驱动实例
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;getDriver($name)
+
+
+/**
+ * 获取驱动类
+ * @param string $type
+ * @return string
+ */
+$this-&gt;resolveClass($type)
+
+
+/**
+ * 获取驱动参数
+ * @param $name
+ * @return array
+ */
+$this-&gt;resolveParams($name)
+
+
+/**
+ * 创建驱动
+ *
+ * @param string $name
+ * @return mixed
+ *
+ */
+$this-&gt;createDriver($name)
+
+
+/**
+ * 移除一个驱动实例
+ *
+ * @param array|string|null $name
+ * @return $this
+ */
+Filesystem-&gt;forgetDriver($name = NULL)
+
+
+/**
+ * 动态调用
+ * @param string $method
+ * @param array  $parameters
+ * @return mixed
+ */
+Filesystem-&gt;__call($method, $parameters)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="http" href="#http">Http</a>
+							<a href="#" title="Http @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Http = new Http();
+
+/**
+ * 设置应用名称
+ * @access public
+ * @param string $name 应用名称
+ * @return $this
+ */
+Http-&gt;name($name)
+
+
+/**
+ * 获取应用名称
+ * @access public
+ * @return string
+ */
+Http-&gt;getName()
+
+
+/**
+ * 设置应用目录
+ * @access public
+ * @param string $path 应用目录
+ * @return $this
+ */
+Http-&gt;path($path)
+
+
+/**
+ * 获取应用路径
+ * @access public
+ * @return string
+ */
+Http-&gt;getPath()
+
+
+/**
+ * 获取路由目录
+ * @access public
+ * @return string
+ */
+Http-&gt;getRoutePath()
+
+
+/**
+ * 设置路由目录
+ * @access public
+ * @param string $path 路由定义目录
+ */
+Http-&gt;setRoutePath($path)
+
+
+/**
+ * 设置应用绑定
+ * @access public
+ * @param bool $bind 是否绑定
+ * @return $this
+ */
+Http-&gt;setBind($bind = true)
+
+
+/**
+ * 是否绑定应用
+ * @access public
+ * @return bool
+ */
+Http-&gt;isBind()
+
+
+/**
+ * 执行应用程序
+ * @access public
+ * @param Request|null $request
+ * @return Response
+ */
+Http-&gt;run($request = NULL)
+
+
+/**
+ * 初始化
+ */
+$this-&gt;initialize()
+
+
+/**
+ * 执行应用程序
+ * @param Request $request
+ * @return mixed
+ */
+$this-&gt;runWithRequest($request)
+
+
+
+$this-&gt;dispatchToRoute($request)
+
+
+/**
+ * 加载全局中间件
+ */
+$this-&gt;loadMiddleware()
+
+
+/**
+ * 加载路由
+ * @access protected
+ * @return void
+ */
+$this-&gt;loadRoutes()
+
+
+/**
+ * Report the exception to the exception handler.
+ *
+ * @param Throwable $e
+ * @return void
+ */
+$this-&gt;reportException($e)
+
+
+/**
+ * Render the exception to a response.
+ *
+ * @param Request   $request
+ * @param Throwable $e
+ * @return Response
+ */
+$this-&gt;renderException($request, $e)
+
+
+/**
+ * HttpEnd
+ * @param Response $response
+ * @return void
+ */
+Http-&gt;end($response)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="lang" href="#lang">Lang</a>
+							<a href="#" title="Lang @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Lang = new Lang();
+
+
+Lang::__make($config)
+
+
+/**
+ * 设置当前语言
+ * @access public
+ * @param string $lang 语言
+ * @return void
+ */
+Lang-&gt;setLangSet($lang)
+
+
+/**
+ * 获取当前语言
+ * @access public
+ * @return string
+ */
+Lang-&gt;getLangSet()
+
+
+/**
+ * 获取默认语言
+ * @access public
+ * @return string
+ */
+Lang-&gt;defaultLangSet()
+
+
+/**
+ * 加载语言定义(不区分大小写)
+ * @access public
+ * @param string|array $file  语言文件
+ * @param string   $range 语言作用域
+ * @return array
+ */
+Lang-&gt;load($file, $range = '')
+
+
+/**
+ * 解析语言文件
+ * @access protected
+ * @param string $file 语言文件名
+ * @return array
+ */
+$this-&gt;parse($file)
+
+
+/**
+ * 判断是否存在语言定义(不区分大小写)
+ * @access public
+ * @param string|null $name  语言变量
+ * @param string  $range 语言作用域
+ * @return bool
+ */
+Lang-&gt;has($name, $range = '')
+
+
+/**
+ * 获取语言定义(不区分大小写)
+ * @access public
+ * @param string|null $name  语言变量
+ * @param array   $vars  变量替换
+ * @param string  $range 语言作用域
+ * @return mixed
+ */
+Lang-&gt;get($name = NULL, $vars = [], $range = '')
+
+
+/**
+ * 自动侦测设置获取语言选择
+ * @access public
+ * @param Request $request
+ * @return string
+ */
+Lang-&gt;detect($request)
+
+
+/**
+ * 保存当前语言到Cookie
+ * @access public
+ * @param Cookie $cookie Cookie对象
+ * @return void
+ */
+Lang-&gt;saveToCookie($cookie)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="log" href="#log">Log</a>
+							<a href="#" title="Log @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Log = new Log();
+
+/**
+ * 默认驱动
+ * @return string|null
+ */
+Log-&gt;getDefaultDriver()
+
+
+/**
+ * 获取日志配置
+ * @access public
+ * @param null|string $name名称
+ * @param mixed   $default 默认值
+ * @return mixed
+ */
+Log-&gt;getConfig($name = NULL, $default = NULL)
+
+
+/**
+ * 获取渠道配置
+ * @param string $channel
+ * @param null   $name
+ * @param null   $default
+ * @return array
+ */
+Log-&gt;getChannelConfig($channel, $name = NULL, $default = NULL)
+
+
+/**
+ * driver()的别名
+ * @param string|array $name 渠道名
+ * @return Channel|ChannelSet
+ */
+Log-&gt;channel($name = NULL)
+
+
+
+$this-&gt;resolveType($name)
+
+
+
+Log-&gt;createDriver($name)
+
+
+
+$this-&gt;resolveConfig($name)
+
+
+/**
+ * 清空日志信息
+ * @access public
+ * @param string|array $channel 日志通道名
+ * @return $this
+ */
+Log-&gt;clear($channel = '*')
+
+
+/**
+ * 关闭本次请求日志写入
+ * @access public
+ * @param string|array $channel 日志通道名
+ * @return $this
+ */
+Log-&gt;close($channel = '*')
+
+
+/**
+ * 获取日志信息
+ * @access public
+ * @param string $channel 日志通道名
+ * @return array
+ */
+Log-&gt;getLog($channel = NULL)
+
+
+/**
+ * 保存日志信息
+ * @access public
+ * @return bool
+ */
+Log-&gt;save()
+
+
+/**
+ * 记录日志信息
+ * @access public
+ * @param mixed  $msg 日志信息
+ * @param string $type日志级别
+ * @param array  $context 替换内容
+ * @param bool   $lazy
+ * @return $this
+ */
+Log-&gt;record($msg, $type = 'info', $context = [], $lazy = true)
+
+
+/**
+ * 实时写入日志信息
+ * @access public
+ * @param mixed  $msg 调试信息
+ * @param string $type日志级别
+ * @param array  $context 替换内容
+ * @return $this
+ */
+Log-&gt;write($msg, $type = 'info', $context = [])
+
+
+/**
+ * 注册日志写入事件监听
+ * @param $listener
+ * @return Event
+ */
+Log-&gt;listen($listener)
+
+
+/**
+ * 记录日志信息
+ * @access public
+ * @param string $level   日志级别
+ * @param mixed  $message 日志信息
+ * @param array  $context 替换内容
+ * @return void
+ */
+Log-&gt;log($level, $message, $context = [])
+
+
+/**
+ * 记录emergency信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;emergency($message, $context = [])
+
+
+/**
+ * 记录警报信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;alert($message, $context = [])
+
+
+/**
+ * 记录紧急情况
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;critical($message, $context = [])
+
+
+/**
+ * 记录错误信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;error($message, $context = [])
+
+
+/**
+ * 记录warning信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;warning($message, $context = [])
+
+
+/**
+ * 记录notice信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;notice($message, $context = [])
+
+
+/**
+ * 记录一般信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;info($message, $context = [])
+
+
+/**
+ * 记录调试信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;debug($message, $context = [])
+
+
+/**
+ * 记录sql信息
+ * @access public
+ * @param mixed $message 日志信息
+ * @param array $context 替换内容
+ * @return void
+ */
+Log-&gt;sql($message, $context = [])
+
+
+
+Log-&gt;__call($method, $parameters)
+
+
+/**
+ * 获取驱动实例
+ * @param null|string $name
+ * @return mixed
+ */
+$this-&gt;driver($name = NULL)
+
+
+/**
+ * 获取驱动实例
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;getDriver($name)
+
+
+/**
+ * 获取驱动类
+ * @param string $type
+ * @return string
+ */
+$this-&gt;resolveClass($type)
+
+
+/**
+ * 获取驱动参数
+ * @param $name
+ * @return array
+ */
+$this-&gt;resolveParams($name)
+
+
+/**
+ * 移除一个驱动实例
+ *
+ * @param array|string|null $name
+ * @return $this
+ */
+Log-&gt;forgetDriver($name = NULL)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="manager" href="#manager">Manager</a>
+							<a href="#" title="Manager @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Manager = new Manager();
+
+/**
+ * 获取驱动实例
+ * @param null|string $name
+ * @return mixed
+ */
+$this-&gt;driver($name = NULL)
+
+
+/**
+ * 获取驱动实例
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;getDriver($name)
+
+
+/**
+ * 获取驱动类型
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;resolveType($name)
+
+
+/**
+ * 获取驱动配置
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;resolveConfig($name)
+
+
+/**
+ * 获取驱动类
+ * @param string $type
+ * @return string
+ */
+$this-&gt;resolveClass($type)
+
+
+/**
+ * 获取驱动参数
+ * @param $name
+ * @return array
+ */
+$this-&gt;resolveParams($name)
+
+
+/**
+ * 创建驱动
+ *
+ * @param string $name
+ * @return mixed
+ *
+ */
+$this-&gt;createDriver($name)
+
+
+/**
+ * 移除一个驱动实例
+ *
+ * @param array|string|null $name
+ * @return $this
+ */
+Manager-&gt;forgetDriver($name = NULL)
+
+
+/**
+ * 默认驱动
+ * @return string|null
+ */
+Manager-&gt;getDefaultDriver()
+
+
+/**
+ * 动态调用
+ * @param string $method
+ * @param array  $parameters
+ * @return mixed
+ */
+Manager-&gt;__call($method, $parameters)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="middleware" href="#middleware">Middleware</a>
+							<a href="#" title="Middleware @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Middleware = new Middleware();
+
+/**
+ * 导入中间件
+ * @access public
+ * @param array  $middlewares
+ * @param string $type 中间件类型
+ * @return void
+ */
+Middleware-&gt;import($middlewares = [], $type = 'global')
+
+
+/**
+ * 注册中间件
+ * @access public
+ * @param mixed  $middleware
+ * @param string $type 中间件类型
+ * @return void
+ */
+Middleware-&gt;add($middleware, $type = 'global')
+
+
+/**
+ * 注册路由中间件
+ * @access public
+ * @param mixed $middleware
+ * @return void
+ */
+Middleware-&gt;route($middleware)
+
+
+/**
+ * 注册控制器中间件
+ * @access public
+ * @param mixed $middleware
+ * @return void
+ */
+Middleware-&gt;controller($middleware)
+
+
+/**
+ * 注册中间件到开始位置
+ * @access public
+ * @param mixed  $middleware
+ * @param string $type 中间件类型
+ */
+Middleware-&gt;unshift($middleware, $type = 'global')
+
+
+/**
+ * 获取注册的中间件
+ * @access public
+ * @param string $type 中间件类型
+ * @return array
+ */
+Middleware-&gt;all($type = 'global')
+
+
+/**
+ * 调度管道
+ * @access public
+ * @param string $type 中间件类型
+ * @return Pipeline
+ */
+Middleware-&gt;pipeline($type = 'global')
+
+
+/**
+ * 结束调度
+ * @param Response $response
+ */
+Middleware-&gt;end($response)
+
+
+/**
+ * 异常处理
+ * @param Request   $passable
+ * @param Throwable $e
+ * @return Response
+ */
+Middleware-&gt;handleException($passable, $e)
+
+
+/**
+ * 解析中间件
+ * @access protected
+ * @param mixed  $middleware
+ * @param string $type 中间件类型
+ * @return array
+ */
+$this-&gt;buildMiddleware($middleware, $type)
+
+
+/**
+ * 中间件排序
+ * @param array $middlewares
+ * @return array
+ */
+$this-&gt;sortMiddleware($middlewares)
+
+
+/**
+ * 获取中间件优先级
+ * @param $priority
+ * @param $middleware
+ * @return int
+ */
+$this-&gt;getMiddlewarePriority($priority, $middleware)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="pipeline" href="#pipeline">Pipeline</a>
+							<a href="#" title="Pipeline @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Pipeline = new Pipeline();
+
+/**
+ * 初始数据
+ * @param $passable
+ * @return $this
+ */
+Pipeline-&gt;send($passable)
+
+
+/**
+ * 调用栈
+ * @param $pipes
+ * @return $this
+ */
+Pipeline-&gt;through($pipes)
+
+
+/**
+ * 执行
+ * @param Closure $destination
+ * @return mixed
+ */
+Pipeline-&gt;then($destination)
+
+
+/**
+ * 设置异常处理器
+ * @param callable $handler
+ * @return $this
+ */
+Pipeline-&gt;whenException($handler)
+
+
+
+$this-&gt;carry()
+
+
+/**
+ * 异常处理
+ * @param $passable
+ * @param $e
+ * @return mixed
+ */
+$this-&gt;handleException($passable, $e)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="request" href="#request">Request</a>
+							<a href="#" title="Request @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Request = new Request();
+
+
+Request::__make($app)
+
+
+/**
+ * 设置当前包含协议的域名
+ * @access public
+ * @param  string $domain 域名
+ * @return $this
+ */
+Request-&gt;setDomain($domain)
+
+
+/**
+ * 获取当前包含协议的域名
+ * @access public
+ * @param  bool $port 是否需要去除端口号
+ * @return string
+ */
+Request-&gt;domain($port = false)
+
+
+/**
+ * 获取当前根域名
+ * @access public
+ * @return string
+ */
+Request-&gt;rootDomain()
+
+
+/**
+ * 设置当前泛域名的值
+ * @access public
+ * @param  string $domain 域名
+ * @return $this
+ */
+Request-&gt;setSubDomain($domain)
+
+
+/**
+ * 获取当前子域名
+ * @access public
+ * @return string
+ */
+Request-&gt;subDomain()
+
+
+/**
+ * 设置当前泛域名的值
+ * @access public
+ * @param  string $domain 域名
+ * @return $this
+ */
+Request-&gt;setPanDomain($domain)
+
+
+/**
+ * 获取当前泛域名的值
+ * @access public
+ * @return string
+ */
+Request-&gt;panDomain()
+
+
+/**
+ * 设置当前完整URL 包括QUERY_STRING
+ * @access public
+ * @param  string $url URL地址
+ * @return $this
+ */
+Request-&gt;setUrl($url)
+
+
+/**
+ * 获取当前完整URL 包括QUERY_STRING
+ * @access public
+ * @param  bool $complete 是否包含完整域名
+ * @return string
+ */
+Request-&gt;url($complete = false)
+
+
+/**
+ * 设置当前URL 不含QUERY_STRING
+ * @access public
+ * @param  string $url URL地址
+ * @return $this
+ */
+Request-&gt;setBaseUrl($url)
+
+
+/**
+ * 获取当前URL 不含QUERY_STRING
+ * @access public
+ * @param  bool $complete 是否包含完整域名
+ * @return string
+ */
+Request-&gt;baseUrl($complete = false)
+
+
+/**
+ * 获取当前执行的文件 SCRIPT_NAME
+ * @access public
+ * @param  bool $complete 是否包含完整域名
+ * @return string
+ */
+Request-&gt;baseFile($complete = false)
+
+
+/**
+ * 设置URL访问根地址
+ * @access public
+ * @param  string $url URL地址
+ * @return $this
+ */
+Request-&gt;setRoot($url)
+
+
+/**
+ * 获取URL访问根地址
+ * @access public
+ * @param  bool $complete 是否包含完整域名
+ * @return string
+ */
+Request-&gt;root($complete = false)
+
+
+/**
+ * 获取URL访问根目录
+ * @access public
+ * @return string
+ */
+Request-&gt;rootUrl()
+
+
+/**
+ * 设置当前请求的pathinfo
+ * @access public
+ * @param  string $pathinfo
+ * @return $this
+ */
+Request-&gt;setPathinfo($pathinfo)
+
+
+/**
+ * 获取当前请求URL的pathinfo信息（含URL后缀）
+ * @access public
+ * @return string
+ */
+Request-&gt;pathinfo()
+
+
+/**
+ * 当前URL的访问后缀
+ * @access public
+ * @return string
+ */
+Request-&gt;ext()
+
+
+/**
+ * 获取当前请求的时间
+ * @access public
+ * @param  bool $float 是否使用浮点类型
+ * @return integer|float
+ */
+Request-&gt;time($float = false)
+
+
+/**
+ * 当前请求的资源类型
+ * @access public
+ * @return string
+ */
+Request-&gt;type()
+
+
+/**
+ * 设置资源类型
+ * @access public
+ * @param  string|array $type 资源类型名
+ * @param  string   $val 资源类型
+ * @return void
+ */
+Request-&gt;mimeType($type, $val = '')
+
+
+/**
+ * 设置请求类型
+ * @access public
+ * @param  string $method 请求类型
+ * @return $this
+ */
+Request-&gt;setMethod($method)
+
+
+/**
+ * 当前的请求类型
+ * @access public
+ * @param  bool $origin 是否获取原始请求类型
+ * @return string
+ */
+Request-&gt;method($origin = false)
+
+
+/**
+ * 是否为GET请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isGet()
+
+
+/**
+ * 是否为POST请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isPost()
+
+
+/**
+ * 是否为PUT请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isPut()
+
+
+/**
+ * 是否为DELTE请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isDelete()
+
+
+/**
+ * 是否为HEAD请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isHead()
+
+
+/**
+ * 是否为PATCH请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isPatch()
+
+
+/**
+ * 是否为OPTIONS请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isOptions()
+
+
+/**
+ * 是否为cli
+ * @access public
+ * @return bool
+ */
+Request-&gt;isCli()
+
+
+/**
+ * 是否为cgi
+ * @access public
+ * @return bool
+ */
+Request-&gt;isCgi()
+
+
+/**
+ * 获取当前请求的参数
+ * @access public
+ * @param  string|array $name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;param($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取包含文件在内的请求参数
+ * @access public
+ * @param  string|array $name 变量名
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;all($name = '', $filter = '')
+
+
+/**
+ * 设置路由变量
+ * @access public
+ * @param  Rule $rule 路由对象
+ * @return $this
+ */
+Request-&gt;setRule($rule)
+
+
+/**
+ * 获取当前路由对象
+ * @access public
+ * @return Rule|null
+ */
+Request-&gt;rule()
+
+
+/**
+ * 设置路由变量
+ * @access public
+ * @param  array $route 路由变量
+ * @return $this
+ */
+Request-&gt;setRoute($route)
+
+
+/**
+ * 获取路由参数
+ * @access public
+ * @param  string|array $name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;route($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取GET参数
+ * @access public
+ * @param  string|array $name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;get($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取中间件传递的参数
+ * @access public
+ * @param  mixed $name 变量名
+ * @param  mixed $default 默认值
+ * @return mixed
+ */
+Request-&gt;middleware($name, $default = NULL)
+
+
+/**
+ * 获取POST参数
+ * @access public
+ * @param  string|array $name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;post($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取PUT参数
+ * @access public
+ * @param  string|array $name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;put($name = '', $default = NULL, $filter = '')
+
+
+
+$this-&gt;getInputData($content)
+
+
+/**
+ * 设置获取DELETE参数
+ * @access public
+ * @param  mixed$name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;delete($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 设置获取PATCH参数
+ * @access public
+ * @param  mixed$name 变量名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;patch($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取request变量
+ * @access public
+ * @param  string|array $name 数据名称
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;request($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取环境变量
+ * @access public
+ * @param  string $name 数据名称
+ * @param  string $default 默认值
+ * @return mixed
+ */
+Request-&gt;env($name = '', $default = NULL)
+
+
+/**
+ * 获取session数据
+ * @access public
+ * @param  string $name 数据名称
+ * @param  string $default 默认值
+ * @return mixed
+ */
+Request-&gt;session($name = '', $default = NULL)
+
+
+/**
+ * 获取cookie参数
+ * @access public
+ * @param  mixed$name 数据名称
+ * @param  string   $default 默认值
+ * @param  string|array $filter 过滤方法
+ * @return mixed
+ */
+Request-&gt;cookie($name = '', $default = NULL, $filter = '')
+
+
+/**
+ * 获取server参数
+ * @access public
+ * @param  string $name 数据名称
+ * @param  string $default 默认值
+ * @return mixed
+ */
+Request-&gt;server($name = '', $default = '')
+
+
+/**
+ * 获取上传的文件信息
+ * @access public
+ * @param  string $name 名称
+ * @return null|array|UploadedFile
+ */
+Request-&gt;file($name = '')
+
+
+
+$this-&gt;dealUploadFile($files, $name)
+
+
+
+$this-&gt;throwUploadFileError($error)
+
+
+/**
+ * 设置或者获取当前的Header
+ * @access public
+ * @param  string $name header名称
+ * @param  string $default 默认值
+ * @return string|array
+ */
+Request-&gt;header($name = '', $default = NULL)
+
+
+/**
+ * 获取变量 支持过滤和默认值
+ * @access public
+ * @param  array$data 数据源
+ * @param  string|false $name 字段名
+ * @param  mixed$default 默认值
+ * @param  string|array $filter 过滤函数
+ * @return mixed
+ */
+Request-&gt;input($data = [], $name = '', $default = NULL, $filter = '')
+
+
+
+$this-&gt;filterData($data, $filter, $name, $default)
+
+
+/**
+ * 强制类型转换
+ * @access public
+ * @param  mixed  $data
+ * @param  string $type
+ * @return mixed
+ */
+$this-&gt;typeCast(&amp;$data, $type)
+
+
+/**
+ * 获取数据
+ * @access public
+ * @param  array  $data 数据源
+ * @param  string $name 字段名
+ * @param  mixed  $default 默认值
+ * @return mixed
+ */
+$this-&gt;getData($data, $name, $default = NULL)
+
+
+/**
+ * 设置或获取当前的过滤规则
+ * @access public
+ * @param  mixed $filter 过滤规则
+ * @return mixed
+ */
+Request-&gt;filter($filter = NULL)
+
+
+
+$this-&gt;getFilter($filter, $default)
+
+
+/**
+ * 递归过滤给定的值
+ * @access public
+ * @param  mixed $value 键值
+ * @param  mixed $key 键名
+ * @param  array $filters 过滤方法+默认值
+ * @return mixed
+ */
+Request-&gt;filterValue(&amp;$value, $key, $filters)
+
+
+/**
+ * 是否存在某个请求参数
+ * @access public
+ * @param  string $name 变量名
+ * @param  string $type 变量类型
+ * @param  bool   $checkEmpty 是否检测空值
+ * @return bool
+ */
+Request-&gt;has($name, $type = 'param', $checkEmpty = false)
+
+
+/**
+ * 获取指定的参数
+ * @access public
+ * @param  array$name 变量名
+ * @param  mixed$data 数据或者变量类型
+ * @param  string|array $filter 过滤方法
+ * @return array
+ */
+Request-&gt;only($name, $data = 'param', $filter = '')
+
+
+/**
+ * 排除指定参数获取
+ * @access public
+ * @param  array  $name 变量名
+ * @param  string $type 变量类型
+ * @return mixed
+ */
+Request-&gt;except($name, $type = 'param')
+
+
+/**
+ * 当前是否ssl
+ * @access public
+ * @return bool
+ */
+Request-&gt;isSsl()
+
+
+/**
+ * 当前是否JSON请求
+ * @access public
+ * @return bool
+ */
+Request-&gt;isJson()
+
+
+/**
+ * 当前是否Ajax请求
+ * @access public
+ * @param  bool $ajax true 获取原始ajax请求
+ * @return bool
+ */
+Request-&gt;isAjax($ajax = false)
+
+
+/**
+ * 当前是否Pjax请求
+ * @access public
+ * @param  bool $pjax true 获取原始pjax请求
+ * @return bool
+ */
+Request-&gt;isPjax($pjax = false)
+
+
+/**
+ * 获取客户端IP地址
+ * @access public
+ * @return string
+ */
+Request-&gt;ip()
+
+
+/**
+ * 检测是否是合法的IP地址
+ *
+ * @param string $ip   IP地址
+ * @param string $type IP地址类型 (ipv4, ipv6)
+ *
+ * @return boolean
+ */
+Request-&gt;isValidIP($ip, $type = '')
+
+
+/**
+ * 将IP地址转换为二进制字符串
+ *
+ * @param string $ip
+ *
+ * @return string
+ */
+Request-&gt;ip2bin($ip)
+
+
+/**
+ * 检测是否使用手机访问
+ * @access public
+ * @return bool
+ */
+Request-&gt;isMobile()
+
+
+/**
+ * 当前URL地址中的scheme参数
+ * @access public
+ * @return string
+ */
+Request-&gt;scheme()
+
+
+/**
+ * 当前请求URL地址中的query参数
+ * @access public
+ * @return string
+ */
+Request-&gt;query()
+
+
+/**
+ * 设置当前请求的host（包含端口）
+ * @access public
+ * @param  string $host 主机名（含端口）
+ * @return $this
+ */
+Request-&gt;setHost($host)
+
+
+/**
+ * 当前请求的host
+ * @access public
+ * @param bool $strict  true 仅仅获取HOST
+ * @return string
+ */
+Request-&gt;host($strict = false)
+
+
+/**
+ * 当前请求URL地址中的port参数
+ * @access public
+ * @return int
+ */
+Request-&gt;port()
+
+
+/**
+ * 当前请求 SERVER_PROTOCOL
+ * @access public
+ * @return string
+ */
+Request-&gt;protocol()
+
+
+/**
+ * 当前请求 REMOTE_PORT
+ * @access public
+ * @return int
+ */
+Request-&gt;remotePort()
+
+
+/**
+ * 当前请求 HTTP_CONTENT_TYPE
+ * @access public
+ * @return string
+ */
+Request-&gt;contentType()
+
+
+/**
+ * 获取当前请求的安全Key
+ * @access public
+ * @return string
+ */
+Request-&gt;secureKey()
+
+
+/**
+ * 设置当前的控制器名
+ * @access public
+ * @param  string $controller 控制器名
+ * @return $this
+ */
+Request-&gt;setController($controller)
+
+
+/**
+ * 设置当前的操作名
+ * @access public
+ * @param  string $action 操作名
+ * @return $this
+ */
+Request-&gt;setAction($action)
+
+
+/**
+ * 获取当前的控制器名
+ * @access public
+ * @param  bool $convert 转换为小写
+ * @return string
+ */
+Request-&gt;controller($convert = false)
+
+
+/**
+ * 获取当前的操作名
+ * @access public
+ * @param  bool $convert 转换为小写
+ * @return string
+ */
+Request-&gt;action($convert = false)
+
+
+/**
+ * 设置或者获取当前请求的content
+ * @access public
+ * @return string
+ */
+Request-&gt;getContent()
+
+
+/**
+ * 获取当前请求的php://input
+ * @access public
+ * @return string
+ */
+Request-&gt;getInput()
+
+
+/**
+ * 生成请求令牌
+ * @access public
+ * @param  string $name 令牌名称
+ * @param  mixed  $type 令牌生成方法
+ * @return string
+ */
+Request-&gt;buildToken($name = '__token__', $type = 'md5')
+
+
+/**
+ * 检查请求令牌
+ * @access public
+ * @param  string $token 令牌名称
+ * @param  array  $data  表单数据
+ * @return bool
+ */
+Request-&gt;checkToken($token = '__token__', $data = [])
+
+
+/**
+ * 设置在中间件传递的数据
+ * @access public
+ * @param  array $middleware 数据
+ * @return $this
+ */
+Request-&gt;withMiddleware($middleware)
+
+
+/**
+ * 设置GET数据
+ * @access public
+ * @param  array $get 数据
+ * @return $this
+ */
+Request-&gt;withGet($get)
+
+
+/**
+ * 设置POST数据
+ * @access public
+ * @param  array $post 数据
+ * @return $this
+ */
+Request-&gt;withPost($post)
+
+
+/**
+ * 设置COOKIE数据
+ * @access public
+ * @param array $cookie 数据
+ * @return $this
+ */
+Request-&gt;withCookie($cookie)
+
+
+/**
+ * 设置SESSION数据
+ * @access public
+ * @param Session $session 数据
+ * @return $this
+ */
+Request-&gt;withSession($session)
+
+
+/**
+ * 设置SERVER数据
+ * @access public
+ * @param  array $server 数据
+ * @return $this
+ */
+Request-&gt;withServer($server)
+
+
+/**
+ * 设置HEADER数据
+ * @access public
+ * @param  array $header 数据
+ * @return $this
+ */
+Request-&gt;withHeader($header)
+
+
+/**
+ * 设置ENV数据
+ * @access public
+ * @param Env $env 数据
+ * @return $this
+ */
+Request-&gt;withEnv($env)
+
+
+/**
+ * 设置php://input数据
+ * @access public
+ * @param string $input RAW数据
+ * @return $this
+ */
+Request-&gt;withInput($input)
+
+
+/**
+ * 设置文件上传数据
+ * @access public
+ * @param  array $files 上传信息
+ * @return $this
+ */
+Request-&gt;withFiles($files)
+
+
+/**
+ * 设置ROUTE变量
+ * @access public
+ * @param  array $route 数据
+ * @return $this
+ */
+Request-&gt;withRoute($route)
+
+
+/**
+ * 设置中间传递数据
+ * @access public
+ * @param  string$name  参数名
+ * @param  mixed $value 值
+ */
+Request-&gt;__set($name, $value)
+
+
+/**
+ * 获取中间传递数据的值
+ * @access public
+ * @param  string $name 名称
+ * @return mixed
+ */
+Request-&gt;__get($name)
+
+
+/**
+ * 检测中间传递数据的值
+ * @access public
+ * @param  string $name 名称
+ * @return boolean
+ */
+Request-&gt;__isset($name)
+
+
+
+Request-&gt;offsetExists($name)
+
+
+
+Request-&gt;offsetGet($name)
+
+
+
+Request-&gt;offsetSet($name, $value)
+
+
+
+Request-&gt;offsetUnset($name)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="response" href="#response">Response</a>
+							<a href="#" title="Response @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Response = new Response();
+
+/**
+ * 初始化
+ * @access protected
+ * @param  mixed  $data 输出数据
+ * @param  int$code 状态码
+ */
+$this-&gt;init($data = '', $code = 200)
+
+
+/**
+ * 创建Response对象
+ * @access public
+ * @param  mixed  $data 输出数据
+ * @param  string $type 输出类型
+ * @param  int$code 状态码
+ * @return Response
+ */
+Response::create($data = '', $type = 'html', $code = 200)
+
+
+/**
+ * 设置Session对象
+ * @access public
+ * @param  Session $session Session对象
+ * @return $this
+ */
+Response-&gt;setSession($session)
+
+
+/**
+ * 发送数据到客户端
+ * @access public
+ * @return void
+ * @throws \InvalidArgumentException
+ */
+Response-&gt;send()
+
+
+/**
+ * 处理数据
+ * @access protected
+ * @param  mixed $data 要处理的数据
+ * @return mixed
+ */
+$this-&gt;output($data)
+
+
+/**
+ * 输出数据
+ * @access protected
+ * @param string $data 要处理的数据
+ * @return void
+ */
+$this-&gt;sendData($data)
+
+
+/**
+ * 输出的参数
+ * @access public
+ * @param  mixed $options 输出参数
+ * @return $this
+ */
+Response-&gt;options($options = [])
+
+
+/**
+ * 输出数据设置
+ * @access public
+ * @param  mixed $data 输出数据
+ * @return $this
+ */
+Response-&gt;data($data)
+
+
+/**
+ * 是否允许请求缓存
+ * @access public
+ * @param  bool $cache 允许请求缓存
+ * @return $this
+ */
+Response-&gt;allowCache($cache)
+
+
+/**
+ * 是否允许请求缓存
+ * @access public
+ * @return bool
+ */
+Response-&gt;isAllowCache()
+
+
+/**
+ * 设置Cookie
+ * @access public
+ * @param  string $name  cookie名称
+ * @param  string $value cookie值
+ * @param  mixed  $option 可选参数
+ * @return $this
+ */
+Response-&gt;cookie($name, $value, $option = NULL)
+
+
+/**
+ * 设置响应头
+ * @access public
+ * @param  array $header  参数
+ * @return $this
+ */
+Response-&gt;header($header = [])
+
+
+/**
+ * 设置页面输出内容
+ * @access public
+ * @param  mixed $content
+ * @return $this
+ */
+Response-&gt;content($content)
+
+
+/**
+ * 发送HTTP状态
+ * @access public
+ * @param  integer $code 状态码
+ * @return $this
+ */
+Response-&gt;code($code)
+
+
+/**
+ * LastModified
+ * @access public
+ * @param  string $time
+ * @return $this
+ */
+Response-&gt;lastModified($time)
+
+
+/**
+ * Expires
+ * @access public
+ * @param  string $time
+ * @return $this
+ */
+Response-&gt;expires($time)
+
+
+/**
+ * ETag
+ * @access public
+ * @param  string $eTag
+ * @return $this
+ */
+Response-&gt;eTag($eTag)
+
+
+/**
+ * 页面缓存控制
+ * @access public
+ * @param  string $cache 状态码
+ * @return $this
+ */
+Response-&gt;cacheControl($cache)
+
+
+/**
+ * 页面输出类型
+ * @access public
+ * @param  string $contentType 输出类型
+ * @param  string $charset 输出编码
+ * @return $this
+ */
+Response-&gt;contentType($contentType, $charset = 'utf-8')
+
+
+/**
+ * 获取头部信息
+ * @access public
+ * @param  string $name 头部名称
+ * @return mixed
+ */
+Response-&gt;getHeader($name = '')
+
+
+/**
+ * 获取原始数据
+ * @access public
+ * @return mixed
+ */
+Response-&gt;getData()
+
+
+/**
+ * 获取输出数据
+ * @access public
+ * @return string
+ */
+Response-&gt;getContent()
+
+
+/**
+ * 获取状态码
+ * @access public
+ * @return integer
+ */
+Response-&gt;getCode()
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="route" href="#route">Route</a>
+							<a href="#" title="Route @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Route = new Route();
+
+
+$this-&gt;init()
+
+
+
+Route-&gt;config($name = NULL)
+
+
+/**
+ * 设置路由域名及分组（包括资源路由）是否延迟解析
+ * @access public
+ * @param bool $lazy 路由是否延迟解析
+ * @return $this
+ */
+Route-&gt;lazy($lazy = true)
+
+
+/**
+ * 设置路由为测试模式
+ * @access public
+ * @param bool $test 路由是否测试模式
+ * @return void
+ */
+Route-&gt;setTestMode($test)
+
+
+/**
+ * 检查路由是否为测试模式
+ * @access public
+ * @return bool
+ */
+Route-&gt;isTest()
+
+
+/**
+ * 设置路由域名及分组（包括资源路由）是否合并解析
+ * @access public
+ * @param bool $merge 路由是否合并解析
+ * @return $this
+ */
+Route-&gt;mergeRuleRegex($merge = true)
+
+
+/**
+ * 初始化默认域名
+ * @access protected
+ * @return void
+ */
+$this-&gt;setDefaultDomain()
+
+
+/**
+ * 设置当前分组
+ * @access public
+ * @param RuleGroup $group 域名
+ * @return void
+ */
+Route-&gt;setGroup($group)
+
+
+/**
+ * 获取指定标识的路由分组 不指定则获取当前分组
+ * @access public
+ * @param string $name 分组标识
+ * @return RuleGroup
+ */
+Route-&gt;getGroup($name = NULL)
+
+
+/**
+ * 注册变量规则
+ * @access public
+ * @param array $pattern 变量规则
+ * @return $this
+ */
+Route-&gt;pattern($pattern)
+
+
+/**
+ * 注册路由参数
+ * @access public
+ * @param array $option 参数
+ * @return $this
+ */
+Route-&gt;option($option)
+
+
+/**
+ * 注册域名路由
+ * @access public
+ * @param string|array $name 子域名
+ * @param mixed$rule 路由规则
+ * @return Domain
+ */
+Route-&gt;domain($name, $rule = NULL)
+
+
+/**
+ * 获取域名
+ * @access public
+ * @return array
+ */
+Route-&gt;getDomains()
+
+
+/**
+ * 获取RuleName对象
+ * @access public
+ * @return RuleName
+ */
+Route-&gt;getRuleName()
+
+
+/**
+ * 设置路由绑定
+ * @access public
+ * @param string $bind   绑定信息
+ * @param string $domain 域名
+ * @return $this
+ */
+Route-&gt;bind($bind, $domain = NULL)
+
+
+/**
+ * 读取路由绑定信息
+ * @access public
+ * @return array
+ */
+Route-&gt;getBind()
+
+
+/**
+ * 读取路由绑定
+ * @access public
+ * @param string $domain 域名
+ * @return string|null
+ */
+Route-&gt;getDomainBind($domain = NULL)
+
+
+/**
+ * 读取路由标识
+ * @access public
+ * @param string $name   路由标识
+ * @param string $domain 域名
+ * @param string $method 请求类型
+ * @return array
+ */
+Route-&gt;getName($name = NULL, $domain = NULL, $method = '*')
+
+
+/**
+ * 批量导入路由标识
+ * @access public
+ * @param array $name 路由标识
+ * @return void
+ */
+Route-&gt;import($name)
+
+
+/**
+ * 注册路由标识
+ * @access public
+ * @param string   $name 路由标识
+ * @param RuleItem $ruleItem 路由规则
+ * @param bool $first是否优先
+ * @return void
+ */
+Route-&gt;setName($name, $ruleItem, $first = false)
+
+
+/**
+ * 保存路由规则
+ * @access public
+ * @param string   $rule 路由规则
+ * @param RuleItem $ruleItem RuleItem对象
+ * @return void
+ */
+Route-&gt;setRule($rule, $ruleItem = NULL)
+
+
+/**
+ * 读取路由
+ * @access public
+ * @param string $rule 路由规则
+ * @return RuleItem[]
+ */
+Route-&gt;getRule($rule)
+
+
+/**
+ * 读取路由列表
+ * @access public
+ * @return array
+ */
+Route-&gt;getRuleList()
+
+
+/**
+ * 清空路由规则
+ * @access public
+ * @return void
+ */
+Route-&gt;clear()
+
+
+/**
+ * 注册路由规则
+ * @access public
+ * @param string $rule   路由规则
+ * @param mixed  $route  路由地址
+ * @param string $method 请求类型
+ * @return RuleItem
+ */
+Route-&gt;rule($rule, $route = NULL, $method = '*')
+
+
+/**
+ * 设置跨域有效路由规则
+ * @access public
+ * @param Rule   $rule   路由规则
+ * @param string $method 请求类型
+ * @return $this
+ */
+Route-&gt;setCrossDomainRule($rule, $method = '*')
+
+
+/**
+ * 注册路由分组
+ * @access public
+ * @param string|\Closure $name  分组名称或者参数
+ * @param mixed   $route 分组路由
+ * @return RuleGroup
+ */
+Route-&gt;group($name, $route = NULL)
+
+
+/**
+ * 注册路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;any($rule, $route)
+
+
+/**
+ * 注册GET路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;get($rule, $route)
+
+
+/**
+ * 注册POST路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;post($rule, $route)
+
+
+/**
+ * 注册PUT路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;put($rule, $route)
+
+
+/**
+ * 注册DELETE路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;delete($rule, $route)
+
+
+/**
+ * 注册PATCH路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;patch($rule, $route)
+
+
+/**
+ * 注册OPTIONS路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param mixed  $route 路由地址
+ * @return RuleItem
+ */
+Route-&gt;options($rule, $route)
+
+
+/**
+ * 注册资源路由
+ * @access public
+ * @param string $rule  路由规则
+ * @param string $route 路由地址
+ * @return Resource
+ */
+Route-&gt;resource($rule, $route)
+
+
+/**
+ * 注册视图路由
+ * @access public
+ * @param string $rule 路由规则
+ * @param string $template 路由模板地址
+ * @param array  $vars 模板变量
+ * @return RuleItem
+ */
+Route-&gt;view($rule, $template = '', $vars = [])
+
+
+/**
+ * 注册重定向路由
+ * @access public
+ * @param string $rule   路由规则
+ * @param string $route  路由地址
+ * @param int$status 状态码
+ * @return RuleItem
+ */
+Route-&gt;redirect($rule, $route = '', $status = 301)
+
+
+/**
+ * rest方法定义和修改
+ * @access public
+ * @param string|array $name 方法名称
+ * @param array|bool   $resource 资源
+ * @return $this
+ */
+Route-&gt;rest($name, $resource = [])
+
+
+/**
+ * 获取rest方法定义的参数
+ * @access public
+ * @param string $name 方法名称
+ * @return array|null
+ */
+Route-&gt;getRest($name = NULL)
+
+
+/**
+ * 注册未匹配路由规则后的处理
+ * @access public
+ * @param string|Closure $route  路由地址
+ * @param string $method 请求类型
+ * @return RuleItem
+ */
+Route-&gt;miss($route, $method = '*')
+
+
+/**
+ * 路由调度
+ * @param Request $request
+ * @param Closure|bool $withRoute
+ * @return Response
+ */
+Route-&gt;dispatch($request, $withRoute = true)
+
+
+/**
+ * 检测URL路由
+ * @access public
+ * @return Dispatch|false
+ * @throws RouteNotFoundException
+ */
+Route-&gt;check()
+
+
+/**
+ * 获取当前请求URL的pathinfo信息(不含URL后缀)
+ * @access protected
+ * @return string
+ */
+$this-&gt;path()
+
+
+/**
+ * 默认URL解析
+ * @access public
+ * @param string $url URL地址
+ * @return Dispatch
+ */
+Route-&gt;url($url)
+
+
+/**
+ * 检测域名的路由规则
+ * @access protected
+ * @return Domain
+ */
+$this-&gt;checkDomain()
+
+
+/**
+ * URL生成 支持路由反射
+ * @access public
+ * @param string $url  路由地址
+ * @param array  $vars 参数 ['a'=&gt;'val1', 'b'=&gt;'val2']
+ * @return UrlBuild
+ */
+Route-&gt;buildUrl($url = '', $vars = [])
+
+
+/**
+ * 设置全局的路由分组参数
+ * @access public
+ * @param string $method 方法名
+ * @param array  $args   调用参数
+ * @return RuleGroup
+ */
+Route-&gt;__call($method, $args)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="service" href="#service">Service</a>
+							<a href="#" title="Service @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Service = new Service();
+
+/**
+ * 加载路由
+ * @access protected
+ * @param string $path 路由路径
+ */
+$this-&gt;loadRoutesFrom($path)
+
+
+/**
+ * 注册路由
+ * @param Closure $closure
+ */
+$this-&gt;registerRoutes($closure)
+
+
+/**
+ * 添加指令
+ * @access protected
+ * @param array|string $commands 指令
+ */
+$this-&gt;commands($commands)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="session" href="#session">Session</a>
+							<a href="#" title="Session @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Session = new Session();
+
+
+$this-&gt;createDriver($name)
+
+
+/**
+ * 获取Session配置
+ * @access public
+ * @param null|string $name名称
+ * @param mixed   $default 默认值
+ * @return mixed
+ */
+Session-&gt;getConfig($name = NULL, $default = NULL)
+
+
+
+$this-&gt;resolveConfig($name)
+
+
+/**
+ * 默认驱动
+ * @return string|null
+ */
+Session-&gt;getDefaultDriver()
+
+
+/**
+ * 获取驱动实例
+ * @param null|string $name
+ * @return mixed
+ */
+$this-&gt;driver($name = NULL)
+
+
+/**
+ * 获取驱动实例
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;getDriver($name)
+
+
+/**
+ * 获取驱动类型
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;resolveType($name)
+
+
+/**
+ * 获取驱动类
+ * @param string $type
+ * @return string
+ */
+$this-&gt;resolveClass($type)
+
+
+/**
+ * 获取驱动参数
+ * @param $name
+ * @return array
+ */
+$this-&gt;resolveParams($name)
+
+
+/**
+ * 移除一个驱动实例
+ *
+ * @param array|string|null $name
+ * @return $this
+ */
+Session-&gt;forgetDriver($name = NULL)
+
+
+/**
+ * 动态调用
+ * @param string $method
+ * @param array  $parameters
+ * @return mixed
+ */
+Session-&gt;__call($method, $parameters)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="validate" href="#validate">Validate</a>
+							<a href="#" title="Validate @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$Validate = new Validate();
+
+/**
+ * 设置服务注入
+ * @access public
+ * @param Closure $maker
+ * @return void
+ */
+Validate::maker($maker)
+
+
+/**
+ * 设置Lang对象
+ * @access public
+ * @param Lang $lang Lang对象
+ * @return void
+ */
+Validate-&gt;setLang($lang)
+
+
+/**
+ * 设置Db对象
+ * @access public
+ * @param Db $db Db对象
+ * @return void
+ */
+Validate-&gt;setDb($db)
+
+
+/**
+ * 设置Request对象
+ * @access public
+ * @param Request $request Request对象
+ * @return void
+ */
+Validate-&gt;setRequest($request)
+
+
+/**
+ * 添加字段验证规则
+ * @access protected
+ * @param string|array $name 字段名称或者规则数组
+ * @param mixed$rule 验证规则或者字段描述信息
+ * @return $this
+ */
+Validate-&gt;rule($name, $rule = '')
+
+
+/**
+ * 注册验证（类型）规则
+ * @access public
+ * @param string   $type 验证规则类型
+ * @param callable $callback callback方法(或闭包)
+ * @param string   $message  验证失败提示信息
+ * @return $this
+ */
+Validate-&gt;extend($type, $callback = NULL, $message = NULL)
+
+
+/**
+ * 设置验证规则的默认提示信息
+ * @access public
+ * @param string|array $type 验证规则类型名称或者数组
+ * @param string   $msg  验证提示信息
+ * @return void
+ */
+Validate-&gt;setTypeMsg($type, $msg = NULL)
+
+
+/**
+ * 设置提示信息
+ * @access public
+ * @param array $message 错误信息
+ * @return Validate
+ */
+Validate-&gt;message($message)
+
+
+/**
+ * 设置验证场景
+ * @access public
+ * @param string $name 场景名
+ * @return $this
+ */
+Validate-&gt;scene($name)
+
+
+/**
+ * 判断是否存在某个验证场景
+ * @access public
+ * @param string $name 场景名
+ * @return bool
+ */
+Validate-&gt;hasScene($name)
+
+
+/**
+ * 设置批量验证
+ * @access public
+ * @param bool $batch 是否批量验证
+ * @return $this
+ */
+Validate-&gt;batch($batch = true)
+
+
+/**
+ * 设置验证失败后是否抛出异常
+ * @access protected
+ * @param bool $fail 是否抛出异常
+ * @return $this
+ */
+Validate-&gt;failException($fail = true)
+
+
+/**
+ * 指定需要验证的字段列表
+ * @access public
+ * @param array $fields 字段名
+ * @return $this
+ */
+Validate-&gt;only($fields)
+
+
+/**
+ * 移除某个字段的验证规则
+ * @access public
+ * @param string|array $field 字段名
+ * @param mixed$rule  验证规则 true 移除所有规则
+ * @return $this
+ */
+Validate-&gt;remove($field, $rule = NULL)
+
+
+/**
+ * 追加某个字段的验证规则
+ * @access public
+ * @param string|array $field 字段名
+ * @param mixed$rule  验证规则
+ * @return $this
+ */
+Validate-&gt;append($field, $rule = NULL)
+
+
+/**
+ * 数据自动验证
+ * @access public
+ * @param array $data  数据
+ * @param array $rules 验证规则
+ * @return bool
+ */
+Validate-&gt;check($data, $rules = [])
+
+
+/**
+ * 根据验证规则验证数据
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rules 验证规则
+ * @return bool
+ */
+Validate-&gt;checkRule($value, $rules)
+
+
+/**
+ * 验证单个字段规则
+ * @access protected
+ * @param string $field 字段名
+ * @param mixed  $value 字段值
+ * @param mixed  $rules 验证规则
+ * @param array  $data  数据
+ * @param string $title 字段描述
+ * @param array  $msg   提示信息
+ * @return mixed
+ */
+$this-&gt;checkItem($field, $value, $rules, $data, $title = '', $msg = [])
+
+
+/**
+ * 获取当前验证类型及规则
+ * @access public
+ * @param mixed $key
+ * @param mixed $rule
+ * @return array
+ */
+$this-&gt;getValidateType($key, $rule)
+
+
+/**
+ * 验证是否和某个字段的值一致
+ * @access public
+ * @param mixed  $value 字段值
+ * @param mixed  $rule  验证规则
+ * @param array  $data  数据
+ * @param string $field 字段名
+ * @return bool
+ */
+Validate-&gt;confirm($value, $rule, $data = [], $field = '')
+
+
+/**
+ * 验证是否和某个字段的值是否不同
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;different($value, $rule, $data = [])
+
+
+/**
+ * 验证是否大于等于某个值
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;egt($value, $rule, $data = [])
+
+
+/**
+ * 验证是否大于某个值
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;gt($value, $rule, $data = [])
+
+
+/**
+ * 验证是否小于等于某个值
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;elt($value, $rule, $data = [])
+
+
+/**
+ * 验证是否小于某个值
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;lt($value, $rule, $data = [])
+
+
+/**
+ * 验证是否等于某个值
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;eq($value, $rule)
+
+
+/**
+ * 必须验证
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;must($value, $rule = NULL)
+
+
+/**
+ * 验证字段值是否为有效格式
+ * @access public
+ * @param mixed  $value 字段值
+ * @param string $rule  验证规则
+ * @param array  $data  数据
+ * @return bool
+ */
+Validate-&gt;is($value, $rule, $data = [])
+
+
+
+$this-&gt;getImageType($image)
+
+
+/**
+ * 验证表单令牌
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;token($value, $rule, $data)
+
+
+/**
+ * 验证是否为合格的域名或者IP 支持A，MX，NS，SOA，PTR，CNAME，AAAA，A6， SRV，NAPTR，TXT 或者 ANY类型
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;activeUrl($value, $rule = 'MX')
+
+
+/**
+ * 验证是否有效IP
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则 ipv4 ipv6
+ * @return bool
+ */
+Validate-&gt;ip($value, $rule = 'ipv4')
+
+
+/**
+ * 检测上传文件后缀
+ * @access public
+ * @param File $file
+ * @param array|string $ext 允许后缀
+ * @return bool
+ */
+$this-&gt;checkExt($file, $ext)
+
+
+/**
+ * 检测上传文件大小
+ * @access public
+ * @param File$file
+ * @param integer $size 最大大小
+ * @return bool
+ */
+$this-&gt;checkSize($file, $size)
+
+
+/**
+ * 检测上传文件类型
+ * @access public
+ * @param File $file
+ * @param array|string $mime 允许类型
+ * @return bool
+ */
+$this-&gt;checkMime($file, $mime)
+
+
+/**
+ * 验证上传文件后缀
+ * @access public
+ * @param mixed $file 上传文件
+ * @param mixed $rule 验证规则
+ * @return bool
+ */
+Validate-&gt;fileExt($file, $rule)
+
+
+/**
+ * 验证上传文件类型
+ * @access public
+ * @param mixed $file 上传文件
+ * @param mixed $rule 验证规则
+ * @return bool
+ */
+Validate-&gt;fileMime($file, $rule)
+
+
+/**
+ * 验证上传文件大小
+ * @access public
+ * @param mixed $file 上传文件
+ * @param mixed $rule 验证规则
+ * @return bool
+ */
+Validate-&gt;fileSize($file, $rule)
+
+
+/**
+ * 验证图片的宽高及类型
+ * @access public
+ * @param mixed $file 上传文件
+ * @param mixed $rule 验证规则
+ * @return bool
+ */
+Validate-&gt;image($file, $rule)
+
+
+/**
+ * 验证时间和日期是否符合指定格式
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;dateFormat($value, $rule)
+
+
+/**
+ * 验证是否唯一
+ * @access public
+ * @param mixed  $value 字段值
+ * @param mixed  $rule  验证规则 格式：数据表,字段名,排除ID,主键名
+ * @param array  $data  数据
+ * @param string $field 验证字段名
+ * @return bool
+ */
+Validate-&gt;unique($value, $rule, $data = [], $field = '')
+
+
+/**
+ * 使用filter_var方式验证
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;filter($value, $rule)
+
+
+/**
+ * 验证某个字段等于某个值的时候必须
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;requireIf($value, $rule, $data = [])
+
+
+/**
+ * 通过回调方法验证某个字段是否必须
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;requireCallback($value, $rule, $data = [])
+
+
+/**
+ * 验证某个字段有值的情况下必须
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;requireWith($value, $rule, $data = [])
+
+
+/**
+ * 验证某个字段没有值的情况下必须
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;requireWithout($value, $rule, $data = [])
+
+
+/**
+ * 验证是否在范围内
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;in($value, $rule)
+
+
+/**
+ * 验证是否不在某个范围
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;notIn($value, $rule)
+
+
+/**
+ * between验证数据
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;between($value, $rule)
+
+
+/**
+ * 使用notbetween验证数据
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;notBetween($value, $rule)
+
+
+/**
+ * 验证数据长度
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;length($value, $rule)
+
+
+/**
+ * 验证数据最大长度
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;max($value, $rule)
+
+
+/**
+ * 验证数据最小长度
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;min($value, $rule)
+
+
+/**
+ * 验证日期
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;after($value, $rule, $data = [])
+
+
+/**
+ * 验证日期
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;before($value, $rule, $data = [])
+
+
+/**
+ * 验证日期
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;afterWith($value, $rule, $data = [])
+
+
+/**
+ * 验证日期
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @param array $data  数据
+ * @return bool
+ */
+Validate-&gt;beforeWith($value, $rule, $data = [])
+
+
+/**
+ * 验证有效期
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;expire($value, $rule)
+
+
+/**
+ * 验证IP许可
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;allowIp($value, $rule)
+
+
+/**
+ * 验证IP禁用
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则
+ * @return bool
+ */
+Validate-&gt;denyIp($value, $rule)
+
+
+/**
+ * 使用正则验证数据
+ * @access public
+ * @param mixed $value 字段值
+ * @param mixed $rule  验证规则 正则规则或者预定义正则名
+ * @return bool
+ */
+Validate-&gt;regex($value, $rule)
+
+
+/**
+ * 获取错误信息
+ * @return array|string
+ */
+Validate-&gt;getError()
+
+
+/**
+ * 获取数据值
+ * @access protected
+ * @param array  $data 数据
+ * @param string $key  数据标识 支持二维
+ * @return mixed
+ */
+$this-&gt;getDataValue($data, $key)
+
+
+/**
+ * 获取验证规则的错误提示信息
+ * @access protected
+ * @param string $attribute 字段英文名
+ * @param string $title 字段描述名
+ * @param string $type  验证规则名称
+ * @param mixed  $rule  验证规则数据
+ * @return string|array
+ */
+$this-&gt;getRuleMsg($attribute, $title, $type, $rule)
+
+
+/**
+ * 获取验证规则的错误提示信息
+ * @access protected
+ * @param string $msg   错误信息
+ * @param mixed  $rule  验证规则数据
+ * @param string $title 字段描述名
+ * @return string|array
+ */
+$this-&gt;parseErrorMsg($msg, $rule, $title)
+
+
+/**
+ * 错误信息数组处理
+ * @access protected
+ * @param array $msg   错误信息
+ * @param mixed  $rule  验证规则数据
+ * @param string $title 字段描述名
+ * @return array
+ */
+$this-&gt;errorMsgIsArray($msg, $rule, $title)
+
+
+/**
+ * 获取数据验证的场景
+ * @access protected
+ * @param string $scene 验证场景
+ * @return void
+ */
+$this-&gt;getScene($scene)
+
+
+/**
+ * 动态方法 直接调用is方法进行验证
+ * @access public
+ * @param string $method 方法名
+ * @param array  $args   调用参数
+ * @return bool
+ */
+Validate-&gt;__call($method, $args)
+
+</pre>
+						</section>
+												<section class="cmd-description grid-item">
+							<h4><a name="view" href="#view">View</a>
+							<a href="#" title="View @ ThinkPHP Docs"><i class="icon-file-text"></i></a></h4>
+							<pre class="prettyprint lang-php">$View = new View();
+
+/**
+ * 获取模板引擎
+ * @access public
+ * @param string $type 模板引擎类型
+ * @return $this
+ */
+View-&gt;engine($type = NULL)
+
+
+/**
+ * 模板变量赋值
+ * @access public
+ * @param string|array $name  模板变量
+ * @param mixed$value 变量值
+ * @return $this
+ */
+View-&gt;assign($name, $value = NULL)
+
+
+/**
+ * 视图过滤
+ * @access public
+ * @param Callable $filter 过滤方法或闭包
+ * @return $this
+ */
+View-&gt;filter($filter = NULL)
+
+
+/**
+ * 解析和获取模板内容 用于输出
+ * @access public
+ * @param string $template 模板文件名或者内容
+ * @param array  $vars 模板变量
+ * @return string
+ * @throws \Exception
+ */
+View-&gt;fetch($template = '', $vars = [])
+
+
+/**
+ * 渲染内容输出
+ * @access public
+ * @param string $content 内容
+ * @param array  $vars模板变量
+ * @return string
+ */
+View-&gt;display($content, $vars = [])
+
+
+/**
+ * 获取模板引擎渲染内容
+ * @param $callback
+ * @return string
+ * @throws \Exception
+ */
+$this-&gt;getContent($callback)
+
+
+/**
+ * 模板变量赋值
+ * @access public
+ * @param string $name  变量名
+ * @param mixed  $value 变量值
+ */
+View-&gt;__set($name, $value)
+
+
+/**
+ * 取得模板显示变量的值
+ * @access protected
+ * @param string $name 模板变量
+ * @return mixed
+ */
+View-&gt;__get($name)
+
+
+/**
+ * 检测模板变量是否设置
+ * @access public
+ * @param string $name 模板变量名
+ * @return bool
+ */
+View-&gt;__isset($name)
+
+
+
+$this-&gt;resolveConfig($name)
+
+
+/**
+ * 默认驱动
+ * @return string|null
+ */
+View-&gt;getDefaultDriver()
+
+
+/**
+ * 获取驱动实例
+ * @param null|string $name
+ * @return mixed
+ */
+$this-&gt;driver($name = NULL)
+
+
+/**
+ * 获取驱动实例
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;getDriver($name)
+
+
+/**
+ * 获取驱动类型
+ * @param string $name
+ * @return mixed
+ */
+$this-&gt;resolveType($name)
+
+
+/**
+ * 获取驱动类
+ * @param string $type
+ * @return string
+ */
+$this-&gt;resolveClass($type)
+
+
+/**
+ * 获取驱动参数
+ * @param $name
+ * @return array
+ */
+$this-&gt;resolveParams($name)
+
+
+/**
+ * 创建驱动
+ *
+ * @param string $name
+ * @return mixed
+ *
+ */
+$this-&gt;createDriver($name)
+
+
+/**
+ * 移除一个驱动实例
+ *
+ * @param array|string|null $name
+ * @return $this
+ */
+View-&gt;forgetDriver($name = NULL)
+
+
+/**
+ * 动态调用
+ * @param string $method
+ * @param array  $parameters
+ * @return mixed
+ */
+View-&gt;__call($method, $parameters)
+
+</pre>
+						</section>
+											</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="./index_files/jquery.js"></script>
+	<script src="./index_files/jquery.highlight-4.js"></script>
+	<script src="./index_files/prettify.js"></script>
+	<script src="./index_files/foundation.min.js"></script>
+	<script src="./index_files/masonry.js"></script>
+	<script src="./index_files/app.js"></script>
+</body>
+</html>
